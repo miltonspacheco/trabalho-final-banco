@@ -1,15 +1,16 @@
 import psycopg2
 from psycopg2 import errorcodes
 from reading import *
+from settings import *
 
 def connect_db():
     try:
         conn = psycopg2.connect(
-            dbname='postgres',
-            user='postgres',
-            password='hiperdeby',
-            host='localhost',
-            port='5432',
+            dbname=DB_NAME,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            host=DB_HOST,
+            port=DB_PORT,
             # options='-c search_path=esquema',
             # client_encoding='UTF8'  
 )
