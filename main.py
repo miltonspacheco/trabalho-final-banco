@@ -1,7 +1,6 @@
 import psycopg2
 from functions import *
 
-#salame
 # main
 try:
     # Estabelece Conexão com o DB
