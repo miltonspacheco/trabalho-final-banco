@@ -1,5 +1,5 @@
 # Valores para criação de tabelas do Banco de Dados
-tables = {}
+tables = {} 
 
 with open('sql_files/tables.sql', 'r') as file:
     sql_content = file.read()
