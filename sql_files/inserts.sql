@@ -1,27 +1,69 @@
-insert into raca (id_raca, tipo_animal, descricao) values 
-        (1039, 'Cachorro', 'Pug'),
-        (1040, 'Cachorro', 'Rottweiler'),
-        (1041, 'Cachorro', 'Schnauzer'),
-        (1042, 'Cachorro', 'Shar-pei'),
-        (1043, 'Cachorro', 'Shiba'),
-        (1044, 'Cachorro', 'Shih tzu'),
-        (1045, 'Cachorro', 'Staffordshire bull terrier'),
-        (1046, 'Cachorro', 'Weimaraner'),
-        (1047, 'Cachorro', 'Yorkshire'),
-        (2001, 'Gato', 'Abissínio'),
-        (2002, 'Gato', 'American Bobtail'),
-        (2003, 'Gato', 'American Curl'),
-        (2004, 'Gato', 'American Shorthair'),
-        (2053, 'Gato', 'British Longhair'),
-        (2054, 'Gato', 'Persa')
 
-----
+-- Inserção Assinaturas
+INSERT INTO Assinatura (id_plano, nome, beneficios, valor, data_inicio, data_vencimento) VALUES
+        (1, 'Standard', 'Todas músicas disponíveis', 0, '01-01-2023', '01-01-2024'),
+        (2, 'Plus', 'Todas músicas e podcasts disponíveis', 5, '01-01-2023', '01-01-2024'),
+        (3, 'Deluxe', 'Todas midias disponíveis e criação de playlist', 15, '01-01-2023', '01-01-2024');
 
-insert into animal (cod_animal, id_raca, nome, cor, peso_kg, porte, tipo_sangue) values
-        (1, '1039', 'Babalu', 'Bege', 6.5, 'Pequeno', null),
-        (2, '1040', 'Mingau', 'Cinza', 4.9, 'Pequeno', null),
-        (3, '1047', 'Fiona', 'Bege', 2.1, 'Pequeno', null),
-        (4, '2004', 'Jujuba', 'Branco e Cinza', 7.5, 'Pequeno', 'AB'),
-        (5, '2053', 'Acerola', 'Cinza', 16.8, 'Grande', null),
-        (6, '2001', 'Pudim', 'Alaranjado', 3.5, 'Pequeno', null),
-        (7, '1045', 'Thor', 'Preto e Amarelo', 21.3, 'Grande', null)
+-- Inserção Generos Musicais
+INSERT INTO Genero (id_genero, nome) VALUES
+        (1, 'Rock'),
+        (2, 'Pop'),
+        (3, 'Funk'),
+        (4, 'Sertanejo'),
+        (5, 'Pagode'),
+        (6, 'Metal'),
+        (8, 'Rap'),
+        (9, 'Trap'),
+
+-- Inserção Temas de Podcast
+INSERT INTO Tema (id_tema, descricao) VALUES
+        (1, 'Politica'),
+        (2, 'Criminal'),
+        (3, 'Geek'),
+        (4, 'Jornalistico'),
+        (5, 'RPG'),
+        (6, 'Entrevista'),
+        (7, 'Humor')
+
+-- Inserção Artistas
+INSERT INTO Artista (id_artista, nome) VALUES 
+        (1, 'Guns n Roses');
+        (2, 'AC/DC');
+        (3, 'Harry Styles');
+        (4, 'The Weeknd');
+        (5, 'Matuê');
+        (6, 'Chicãozinho e Xororó');
+        (7, 'Travis Scott');
+        (8, 'Katy Perry');
+        (9, 'Metallica');
+        (10, 'MC Kekel');
+        (11, 'Pixote');
+        (12, 'Pixote');
+
+-- Inserção Albuns
+INSERT INTO Album (id_album, tipo, nome, ano, id_artista) values
+        (1, 'Disco', 'Appetite for Destruction', 1987, 1);
+
+-- Inserção Músicas
+INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento) VALUES
+        (1, 'Welcome To The Jungle', '00:04:45', 0, '01-10-1989');
+INSERT INTO Musica (id_midia, id_album, letra) VALUES
+        (1, 1, 'letra_Aqui');
+
+
+
+
+INSERT INTO Artista () VALUES
+(),
+
+INSERT INTO Album () VALUES
+(),
+
+INSERT INTO Musica () VALUES
+(),
+
+-- Inserção Podcast
+INSERT INTO Podcast () VALUES
+(),
+
