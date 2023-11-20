@@ -2,6 +2,8 @@ import psycopg2
 from psycopg2 import errorcodes
 from reading import *
 from settings import *
+from pydub import AudioSegment
+from pydub.playback import play
 
 def connect_db():
     try:
@@ -28,6 +30,8 @@ def connect_db():
     except psycopg2.Error as e:
         print(f"Erro ao conectar ao PostgreSQL: {e}")
         return None
+
+# def play_midia(connect):
 
 
 def drop_all_tables(connect):
@@ -184,9 +188,13 @@ def delete_sql(connect):
 
 def consulta1(connect):
     select_query = """
-    select * from animal
+    select g.nome, avg(m.duracao) as media
+    from Musica as m
+    join Genero_Musica as gm on m.id_midia = gm.id_midia
+    join Genero as g on gm.id_genero = g.id_genero
+    group by g.nome
     """
-    print("Primeira Consulta: seleciona tudo de animal")
+    print("Primeira Consulta: Selecione a média da duração das músicas por gênero musical.")
     cursor = connect.cursor()
     cursor.execute(select_query)
     myresult = cursor.fetchall()
@@ -196,9 +204,14 @@ def consulta1(connect):
 
 def consulta2(connect):
     select_query = """
-    select * from raca
+    select u.nome as usuario, 
+    count(*) as qtd_musicas_tocadas, sum(mi.duracao) as duracao_total_musicas_tocadas
+    from Usuario as u
+    join Reproducao as r on r.id_usuario = u_usuario
+    join Midia as mi on mi.id_midia = r.id_midiaa
+    group by u.nome
     """
-    print("Segunda Consulta: seleciona tudo de raca")
+    print("\nSegunda Consulta: Selecione a quantidade total de músicas tocadas e a duração total considerando a duração individual de cada música por usuario.")
     cursor = connect.cursor()
     cursor.execute(select_query)
     myresult = cursor.fetchall()
@@ -206,22 +219,23 @@ def consulta2(connect):
         print(x)
 
 
-# def consulta3(connect):
-#     select_query = """
-#     select ani.cod_animal, ani.nome as animal, adot.nome as adotante, avg(ani_rac.qtde_kg_mensal) as consumo_medio
-#     from ANIMAL_RACAO as ani_rac, ANIMAL as ani, ADOCAO as adoc, ADOTANTE as adot
-#     where ani_rac.cod_animal = ani.cod_animal and
-#         ani.cod_animal = adoc.cod_animal and
-#         adoc.cod_adotante = adot.cod_adotante
-#     group by ani.cod_animal, ani.nome, adot.nome
-#     order by adot.nome, consumo_medio desc
-#     """
-#     print("\nTerceira Consulta: Mostrar e média de ração consumida pelos animais que foram adotados.")
-#     cursor = connect.cursor()
-#     cursor.execute(select_query)
-#     myresult = cursor.fetchall()
-#     for x in myresult:
-#         print(x)
+def consulta3(connect):
+    select_query = """
+    select u.nome, u.e-mail, avg(m.qtde_streamings) as media_streamings
+    from Assinatura as a
+    join Usuario as u on u.id_plano = a.id_plano
+    join Reproducao as r on r.id_usuario = u.id_usuario
+    join Midia as m on m.id_midia = r.id_midia
+    where r.data between '01/10/2023' and '31/10/2023'
+    and a.nome = 'Gratuito'
+    group by u.nome, u.e-mail
+    """
+    print("\nTerceira Consulta: Selecione o nome e email dos usuários como plano de assinatura gratuito que ouviram música no mês de outubro de 2023, selecione também a média da quantidade de streamings.")
+    cursor = connect.cursor()
+    cursor.execute(select_query)
+    myresult = cursor.fetchall()
+    for x in myresult:
+        print(x)
 
 
 def exit_db(connect):
@@ -238,7 +252,7 @@ def crud(connect):
     print("\n---CONSULTAS BEFORE---")
     consulta1(connect)
     consulta2(connect)
-    # consulta3(connect)
+    consulta3(connect)
 
     update_sql(connect)
     delete_sql(connect)
@@ -246,4 +260,4 @@ def crud(connect):
     print("\n---CONSULTAS AFTER---")
     consulta1(connect)
     consulta2(connect)
-    # consulta3(connect)
+    consulta3(connect)
