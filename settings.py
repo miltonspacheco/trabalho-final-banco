@@ -1,4 +1,3 @@
-
 # POSTGRESQL SETTINGS
 DB_NAME = 'postgres'
 DB_USER = 'postgres'
