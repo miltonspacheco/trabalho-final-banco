@@ -1,4 +1,3 @@
-import psycopg2
 from functions import *
 
 # main
@@ -16,10 +15,11 @@ try:
         5.  Rodar os Deletes
         6.  Consulta 1
         7.  Consulta 2
-        8.  Consulta 3 (nao tem ainda)
+        8.  Consulta 3 
         9.  Mostrar tabela
         10. Update valor
         11. Deletar todas as tabelas
+        12. Reproduzir mídia
         0.  Desconectar do Banco de Dados\n """
         print(interface)
 
@@ -56,8 +56,8 @@ try:
         if choice == 7:
             consulta2(con)
 
-        # if choice == 8:
-        #     consulta3(con)
+        if choice == 8:
+            consulta3(con)
 
         if choice == 9:
             show_table(con)
@@ -67,6 +67,9 @@ try:
 
         if choice == 11:
             drop_all_tables(con)
+
+        if choice == 12:
+            play_midia(con)
 
 except psycopg2.Error as err:
     print("Erro na conexão com o PostgreSQL:", err)
