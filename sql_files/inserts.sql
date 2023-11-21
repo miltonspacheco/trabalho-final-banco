@@ -1,10 +1,12 @@
----- Inserção Assinaturas
+---- 
+--Inserção Assinaturas
 INSERT INTO Assinatura (id_plano, nome, beneficios, valor, data_inicio, data_vencimento) VALUES
         (1, 'Standard', 'Todas músicas disponíveis', 0, '01-01-2023', '01-01-2024'),
         (2, 'Plus', 'Todas músicas e podcasts disponíveis', 5, '01-01-2023', '01-01-2024'),
         (3, 'Deluxe', 'Todas midias disponíveis e criação de playlist', 15, '01-01-2023', '01-01-2024');
 
----- Inserção Generos Musicais
+---- 
+--Inserção Generos Musicais
 INSERT INTO Genero (id_genero, nome) VALUES
         (1, 'Rock'),
         (2, 'Pop'),
@@ -15,7 +17,8 @@ INSERT INTO Genero (id_genero, nome) VALUES
         (8, 'Rap'),
         (9, 'Trap');
 
----- Inserção Artistas
+---- 
+--Inserção Artistas
 INSERT INTO Artista (id_artista, nome) VALUES 
         (1, 'Guns n Roses'),
         (2, 'AC/DC'),
@@ -32,7 +35,8 @@ INSERT INTO Artista (id_artista, nome) VALUES
         (13, 'Eminem'),
         (14, 'Pantera');
 
----- Inserção Albuns
+---- 
+--Inserção Albuns
 INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
         (1, 'Disco', 'Appetite for Destruction', 1987, 1),
         (2, 'Disco', 'Back In Black', 1980, 2),
@@ -49,7 +53,8 @@ INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
         (13, 'Disco', 'The Marshall Mathers LP 2', 2013, 13),
         (14, 'Disco', 'Vulgar Display of Power', 1992, 14);
 
----- Inserção Músicas
+---- 
+--Inserção Músicas
 INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento) VALUES
         (1, 'Welcome To The Jungle', '04:34', 0, '01-10-1987'),
         (2, 'Paradise City', '06:46', 0, '30-11-1988'),
@@ -67,7 +72,8 @@ INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento) VAL
         (14, 'Rap God', '06:03', 0, '15-10-2013'),
         (15, 'Todo Mundo Vai Sofrer', '03:02', 0, '28-06-2019'),
         (16, 'Walk', '05:15', 0, '23-08-1994');
----- Inserção Músicas
+---- 
+--Inserção Músicas
 INSERT INTO Musica (id_midia, id_album, letra) VALUES
         (1, 1, 'Welcome to the jungle, we´ve got fun and games
                 We got everything you want honey, we know the names
@@ -847,7 +853,8 @@ INSERT INTO Musica (id_midia, id_album, letra) VALUES
                 Are you talkin'' to me? Are you talkin'' to me?
                 Walk on home, boy');
 
--- Inserção de Relação entre Músicas e Gêneros
+----
+--Inserção de Relação entre Músicas e Gêneros
 INSERT INTO Genero_Musica (id_midia, id_genero) VALUES
     (1, 1), -- Welcome To The Jungle - Guns n Roses - Rock
     (2, 1), -- Paradise City - Guns n Roses - Rock
@@ -867,7 +874,8 @@ INSERT INTO Genero_Musica (id_midia, id_genero) VALUES
     (15, 3), -- Todo Mundo Vai Sofrer - MC Kekel - Funk
     (16, 6); -- Walk - Pantera - Metal
 
----- Inserção Temas de Podcast
+---- 
+--Inserção Temas de Podcast
 INSERT INTO Tema (id_tema, descricao) VALUES
         (1, 'Politica'),
         (2, 'Criminal'),
@@ -877,4 +885,5 @@ INSERT INTO Tema (id_tema, descricao) VALUES
         (6, 'Entrevista'),
         (7, 'Humor')
 
----- Inserção Podcasts
+---- 
+--Inserção Podcasts
