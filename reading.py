@@ -8,7 +8,7 @@ with open('sql_files/tables.sql', 'r') as file:
 table_sqls = sql_content.split('----')
 
 tables['raca'] = table_sqls[0].strip()  
-tables['animal'] = table_sqls[1].strip()  
+tables['animal'] = table_sqls[1].strip()   
 
 ##############################################################
 

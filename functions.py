@@ -15,7 +15,7 @@ def connect_db():
             port=DB_PORT,
             # options='-c search_path=esquema',
             # client_encoding='UTF8'  
-)
+        )
 
         if conn:
             print("Conectado ao servidor PostgreSQL")
