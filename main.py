@@ -68,7 +68,7 @@ try:
         if choice == 11:
             drop_all_tables(con)
 
-        if choice == 12:
+        # if choice == 12:
             # play_midia(con)
 
 except psycopg2.Error as err:

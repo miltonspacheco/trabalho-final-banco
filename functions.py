@@ -1,9 +1,5 @@
-import psycopg2
-from psycopg2 import errorcodes
 from reading import *
 from settings import *
-from pydub import AudioSegment
-from pydub.playback import play
 
 def connect_db():
     try:
@@ -201,6 +197,22 @@ def consulta1(connect):
     for x in myresult:
         print(x)
 
+    # Extracting rows
+    genres = [row[0] for row in myresult]
+    averages = [row[1] for row in myresult]
+
+    # Plotting the bar graph
+    plt.figure(figsize=(10, 6))
+    plt.bar(genres, averages, color='skyblue')
+    plt.xlabel('Gênero Musical')
+    plt.ylabel('Média de Duração')
+    plt.title('Média da Duração das Músicas por Gênero Musical')
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+
+    # Display the plot
+    plt.show()
+
 
 def consulta2(connect):
     select_query = """
@@ -217,6 +229,34 @@ def consulta2(connect):
     myresult = cursor.fetchall()
     for x in myresult:
         print(x)
+    
+    # Extracting rows
+    users = [row[0] for row in myresult]
+    song_counts = [row[1] for row in myresult]
+    total_duration = [row[2] for row in myresult]
+
+    # Plotting the bar graphs
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+
+    # Bar plot 
+    ax1.bar(users, song_counts, color='skyblue')
+    ax1.set_xlabel('Usuário')
+    ax1.set_ylabel('Quantidade de Músicas Tocadas', color='skyblue')
+    ax1.tick_params(axis='y', labelcolor='skyblue')
+
+    # Creating a second y-axis 
+    ax2 = ax1.twinx()
+    ax2.plot(users, total_duration, color='orange', marker='o')
+    ax2.set_ylabel('Duração Total das Músicas Tocadas (s)', color='orange')
+    ax2.tick_params(axis='y', labelcolor='orange')
+
+    # Title and labels
+    plt.title('Quantidade e Duração Total de Músicas Tocadas por Usuário')
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+
+    # Display the plot
+    plt.show()
 
 
 def consulta3(connect):
@@ -236,6 +276,23 @@ def consulta3(connect):
     myresult = cursor.fetchall()
     for x in myresult:
         print(x)
+
+    # Extracting rows
+    users = [row[0] for row in myresult]
+    emails = [row[1] for row in myresult]
+    avg_streamings = [row[2] for row in myresult]
+
+    # Plotting the bar graph
+    plt.figure(figsize=(10, 6))
+    plt.bar(users, avg_streamings, color='green')
+    plt.xlabel('Usuário')
+    plt.ylabel('Média de Streamings')
+    plt.title('Média de Streamings por Usuário com Plano Gratuito em Outubro de 2023')
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+
+    # Display the plot
+    plt.show()
 
 
 def exit_db(connect):
