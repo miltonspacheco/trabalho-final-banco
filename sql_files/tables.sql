@@ -69,14 +69,14 @@ id_midia integer PRIMARY KEY,
 nome varchar(50),
 duracao time,
 qtd_streamings integer,
-data timestamp,
-conteudo bytea
+data_lancamento date,
+conteudo varchar(50)
 );
 
 ----
 
 CREATE TABLE Reproducao (
-data timestamp,
+data_reproducao timestamp,
 id_reproducao integer PRIMARY KEY,
 id_midia integer,
 id_usuario integer,
@@ -116,7 +116,7 @@ id_genero integer PRIMARY KEY
 CREATE TABLE Genero_Musica (
 id_genero integer,
 id_midia integer,
-PRIMARY KEY(id_genero,id_midia)
+PRIMARY KEY(id_genero,id_midia),
 FOREIGN KEY(id_genero) REFERENCES Genero (id_genero),
 FOREIGN KEY(id_midia) REFERENCES Musica (id_midia)
 );
@@ -149,7 +149,7 @@ descricao varchar(100)
 CREATE TABLE Podcast_Tema (
 id_tema integer,
 id_midia integer,
-PRIMARY KEY(id_tema,id_midia)
+PRIMARY KEY(id_tema,id_midia),
 FOREIGN KEY(id_tema) REFERENCES Tema (id_tema),
 FOREIGN KEY(id_midia) REFERENCES Podcast (id_midia)
 );
