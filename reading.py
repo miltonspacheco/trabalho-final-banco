@@ -5,10 +5,28 @@ with open('sql_files/tables.sql', 'r') as file:
     sql_content = file.read()
 
 # Split SQL content based on the marker 
-table_sqls = sql_content.split('----')
+sql_read = sql_content.split('----')
 
-tables['raca'] = table_sqls[0].strip()  
-tables['animal'] = table_sqls[1].strip()  
+tables['Assinatura'] = sql_read[0].strip()  
+tables['Usuario'] = sql_read[1].strip() 
+tables['Playlist'] = sql_read[2].strip()  
+tables['Artista'] = sql_read[3].strip()  
+tables['Album'] = sql_read[4].strip()  
+tables['Cantor_Solo'] = sql_read[5].strip()  
+tables['Banda'] = sql_read[6].strip()  
+tables['Midia'] = sql_read[7].strip()  
+tables['Reproducao'] = sql_read[8].strip()
+tables['Midia_Playlist'] = sql_read[9].strip()
+tables['Musica'] = sql_read[10].strip()
+tables['Genero'] = sql_read[11].strip()
+tables['Genero_Musica'] = sql_read[12].strip()
+tables['Podcaster'] = sql_read[13].strip()
+tables['Podcast'] = sql_read[14].strip()
+tables['Tema'] = sql_read[15].strip()
+tables['Podcast_Tema'] = sql_read[16].strip()
+
+del sql_content
+del sql_read
 
 ##############################################################
 
@@ -19,10 +37,28 @@ with open('sql_files/inserts.sql', 'r') as file:
     sql_content = file.read()
 
 # Split SQL based on the marker 
-value_sql = sql_content.split('----')
+sql_read = sql_content.split('----')
 
-inserts['raca'] = value_sql[0].strip()  
-inserts['animal'] = value_sql[1].strip()
+inserts['Assinatura'] = sql_read[0].strip()  
+inserts['Usuario'] = sql_read[1].strip() 
+inserts['Playlist'] = sql_read[2].strip()  
+inserts['Artista'] = sql_read[3].strip()  
+inserts['Album'] = sql_read[4].strip()  
+inserts['Cantor_Solo'] = sql_read[5].strip()  
+inserts['Banda'] = sql_read[6].strip()  
+inserts['Midia'] = sql_read[7].strip()  
+inserts['Reproducao'] = sql_read[8].strip()
+inserts['Midia_Playlist'] = sql_read[9].strip()
+inserts['Musica'] = sql_read[10].strip()
+inserts['Genero'] = sql_read[11].strip()
+inserts['Genero_Musica'] = sql_read[12].strip()
+inserts['Podcaster'] = sql_read[13].strip()
+inserts['Podcast'] = sql_read[14].strip()
+inserts['Tema'] = sql_read[15].strip()
+inserts['Podcast_Tema'] = sql_read[16].strip()
+
+del sql_content
+del sql_read
 
 ##############################################################
 
@@ -33,10 +69,28 @@ with open('sql_files/drop.sql', 'r') as file:
     sql_content = file.read()
 
 # Split SQL based on the marker 
-drop_sql = sql_content.split('----')
+sql_read = sql_content.split('----')
 
-drop['raca'] = drop_sql[0].strip()  
-drop['animal'] = drop_sql[1].strip()
+drop['Podcast_Tema'] = sql_read[0].strip()
+drop['Tema'] = sql_read[1].strip()
+drop['Podcast'] = sql_read[2].strip()
+drop['Podcaster'] = sql_read[3].strip()
+drop['Genero_Musica'] = sql_read[4].strip()
+drop['Genero'] = sql_read[5].strip()
+drop['Musica'] = sql_read[6].strip()
+drop['Midia_Playlist'] = sql_read[7].strip()
+drop['Midia'] = sql_read[8].strip()  
+drop['Banda'] = sql_read[9].strip()  
+drop['Cantor_Solo'] = sql_read[10].strip()  
+drop['Reproducao'] = sql_read[11].strip()
+drop['Album'] = sql_read[12].strip()  
+drop['Artista'] = sql_read[13].strip()  
+drop['Playlist'] = sql_read[14].strip()  
+drop['Usuario'] = sql_read[15].strip() 
+drop['Assinatura'] = sql_read[16].strip()  
+
+del sql_content
+del sql_read
 
 ##############################################################
 
@@ -47,9 +101,10 @@ with open('sql_files/update.sql', 'r') as file:
     sql_content = file.read()
 
 # Split SQL based on the marker 
-update_sql = sql_content.split('----')
+sql_read = sql_content.split('----')
 
-update['animal'] = update_sql[0].strip()  
+del sql_content
+del sql_read
 
 ##############################################################
 
@@ -60,6 +115,7 @@ with open('sql_files/delete.sql', 'r') as file:
     sql_content = file.read()
 
 # Split SQL based on the marker 
-delete_sql = sql_content.split('----')
+sql_read = sql_content.split('----')
 
-delete['raca'] = delete_sql[0].strip() 
+del sql_content
+del sql_read
