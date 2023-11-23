@@ -1,5 +1,6 @@
 from reading import *
 from settings import *
+from play import *
 
 def connect_db():
     try:
@@ -27,7 +28,37 @@ def connect_db():
         print(f"Erro ao conectar ao PostgreSQL: {e}")
         return None
 
-# def play_midia(connect):
+def play_media(connect):
+    print("Escolha qual tipo de mídia você deseja ouvir:")
+    tipo = int(input("""
+    1 - Música
+    2 - Podcast \n"""))
+    
+    if(tipo == 1):
+        audio_type = 'music'
+        print("Músicas disponíveis:\n")
+
+        select_query = """
+        select mi.nome from midia as mi join musica as mu on mi.id_midia = mu.id_midia
+        """
+    else:
+        audio_type = 'podcast'
+        print("Podcasts disponíveis:\n")
+
+        select_query = """
+        select mi.nome from midia as mi join podcast as po on mi.id_midia = po.id_midia
+        """
+
+    cursor = connect.cursor()
+    cursor.execute(select_query)
+    myresult = cursor.fetchall()
+    for x in myresult:
+        print(x)
+    
+    audio_name = input("\nDigite o nome da mídia escolhida: ")
+    print("Para parar a reprodução basta usar o comando Ctrl + C")
+    
+    play(audio_type, audio_name)
 
 
 def drop_all_tables(connect):
