@@ -11,15 +11,14 @@ try:
         1.  CRUD
         2.  Criar todas as tabelas
         3.  Inserir todos os valores
-        4.  Rodar os Updates (tirar)
-        5.  Rodar os Deletes (tirar)
+        4.  Update valor
+        5.  Delete valor
         6.  Consulta 1
         7.  Consulta 2
         8.  Consulta 3 
         9.  Mostrar tabela
-        10. Update valor
-        11. Deletar todas as tabelas
-        12. Reproduzir mídia
+        10. Deletar todas as tabelas
+        11. Reproduzir mídia
         0.  Desconectar do Banco de Dados\n """
         print(interface)
 
@@ -45,10 +44,10 @@ try:
             insert_sql(con)
 
         if choice == 4:
-            update_sql(con)
+            update_value(con)
 
         if choice == 5:
-            delete_sql(con)
+            delete_value(con)
 
         if choice == 6:
             consulta1(con)
@@ -63,12 +62,9 @@ try:
             show_table(con)
 
         if choice == 10:
-            update_value(con)
-
-        if choice == 11:
             drop_all_tables(con)
 
-        if choice == 12:
+        if choice == 11:
             play_media(con)
 
 except psycopg2.Error as err:
