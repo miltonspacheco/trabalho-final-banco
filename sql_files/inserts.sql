@@ -1,9 +1,9 @@
----- 
+
 --Inserção Assinaturas
 INSERT INTO Assinatura (id_plano, nome, beneficios, valor, data_inicio, data_vencimento) VALUES
-        (1, 'Standard', 'Todas músicas disponíveis', 0, '01-01-2023', '01-01-2024'),
-        (2, 'Plus', 'Todas músicas e podcasts disponíveis', 5, '01-01-2023', '01-01-2024'),
-        (3, 'Deluxe', 'Todas midias disponíveis e criação de playlist', 15, '01-01-2023', '01-01-2024');
+        (1, 'Standard', 'Todas musicas disponiveis', 0, '01-01-2023', '01-01-2024'),
+        (2, 'Plus', 'Todas musicas e podcasts disponiveis', 5, '01-01-2023', '01-01-2024'),
+        (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15, '01-01-2023', '01-01-2024');
 
 ---- 
 --Inserção Generos Musicais
@@ -878,12 +878,91 @@ INSERT INTO Genero_Musica (id_midia, id_genero) VALUES
 --Inserção Temas de Podcast
 INSERT INTO Tema (id_tema, descricao) VALUES
         (1, 'Politica'),
-        (2, 'Criminal'),
+        (2, 'Tecnologia'),
         (3, 'Geek'),
         (4, 'Jornalistico'),
         (5, 'RPG'),
-        (6, 'Entrevista'),
-        (7, 'Humor')
+        (6, 'Entrevista');
 
 ---- 
---Inserção Podcasts
+--Inserção Podcaster
+INSERT INTO Podcaster (id_podcaster, nome) VALUES
+        (1, 'Podpah'),
+        (2, 'Hipsters Ponto Tech'),
+        (3, 'NerdCast'),
+        (4, 'Flow Podcast');
+
+---- 
+--Inserção Podcast
+INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento) VALUES
+        (17, 'MANO BROWN - Podpah', '02:53:58', 0, '07-03-2022'),
+        (18, 'LUCAS INUTILISMO - Podpah', '02:36:20', 0, '17-10-2020'),
+        (19, 'Web3 vale o hype? - Hipsters Ponto Tech', '04:34', 0, '24-10-2023'),
+        (20, 'Loki 2: O glorioso propósito do deus da trapaça - NerdCast', '04:34', 0, '17-11-2023'),
+        (21, 'GAULES - Flow Podcast', '02:59:42', 0, '13-03-2020');
+----
+--Inserção Podcast
+INSERT INTO Podcast (id_midia, id_podcaster) VALUES
+        (17, 1),
+        (18, 1),
+        (19, 2),
+        (20, 3),
+        (21, 4);
+
+----
+--Inserção Podcast_Tema
+INSERT INTO Podcast_Tema (id_midia, id_tema) VALUES
+        (17, 6),
+        (18, 6),
+        (19, 2),
+        (20, 3),
+        (21, 6);        
+
+----
+--Inserção Usuario
+INSERT INTO Usuario (id_usuario, id_plano, nome, email, cpf) VALUES
+        (1, 1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097'); 
+
+----
+--Inserção Reproducao
+INSERT INTO Reproducao (id_midia, id_usuario, data_reproducao) VALUES
+        (1, 1, '2017-08-24 17:45:42'),
+        (2, 1, '2017-08-24 17:45:42'),
+        (3, 1, '2017-08-24 17:45:42'),
+        (4, 1, '2017-08-24 17:45:42'),
+        (5, 1, '2017-08-24 17:45:42');        
+
+----
+--Inserção Playlist
+INSERT INTO Playlist (id_playlist, id_usuario, nome, descricao) VALUES
+        (1, 1, 'Rock Antigo', 'Musicas de rock antigos');
+
+----
+--Inserção Midia_Playlist
+INSERT INTO Midia_Playlist (id_midia, id_playlist) VALUES
+        (1, 1),
+        (2, 1),
+        (4, 1),
+        (10, 1);
+
+----
+--Inserção Cantor_Solo
+INSERT INTO Cantor_Solo (id_artista, aniversario) VALUES
+        (3, '01-02-1994'),
+        (4, '16-02-1990'),
+        (5, '11-10-1993'),
+        (7, '30-04-1991'),
+        (8, '25-10-1984'),
+        (10, '10-07-1995'),
+        (12, '26-09-1996'),
+        (13, '17-10-1972');
+
+----
+--Inserção Banda
+INSERT INTO Banda (id_artista, data_formacao) VALUES
+        (1, 1985),
+        (2, 1973),
+        (6, 1969),
+        (9, 1981),
+        (11, 1991),
+        (14, 1981);
