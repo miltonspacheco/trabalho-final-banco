@@ -5,17 +5,18 @@ INSERT INTO Plano_Assinatura (id_plano, nome, beneficios, valor) VALUES
         (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15);
 
 
---Inserção Assinaturas
-INSERT INTO Assinatura (id_assinatura, id_usuario, id_plano, data_inicio, data_vencimento) VALUES
-        (1, 1, 1, '01-01-2023', '01-01-2024'),
-        (2, 2, 2, '01-01-2023', '01-01-2024'),
-        (3, 3, 3, '01-01-2023', '01-01-2024');
+----
+--Inserção Usuario
+INSERT INTO Usuario (id_usuario, nome, email, cpf, senha) VALUES
+        (1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097', '12345'); 
 
 
 ----
---Inserção Usuario
-INSERT INTO Usuario (id_usuario, id_plano, nome, email, cpf, senha) VALUES
-        (1, 1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097', '12345'); 
+--Inserção Assinaturas
+INSERT INTO Assinatura (id_assinatura, id_usuario, id_plano, data_inicio, data_vencimento) VALUES
+        (1, 1, 1, '01-01-2023', '01-01-2024'),
+        (2, 1, 2, '01-01-2023', '01-01-2024'),
+        (3, 1, 3, '01-01-2023', '01-01-2024');
 
 
 ----
@@ -32,7 +33,7 @@ INSERT INTO Artista (id_artista, nome, tipo) VALUES
         (3, 'Harry Styles', 'Solo'),
         (4, 'The Weeknd', 'Solo'),
         (5, 'Matue', 'Solo'),
-        (6, 'Chicaozinho e Xororo'),
+        (6, 'Chicaozinho e Xororo', 'Banda'),
         (7, 'Travis Scott', 'Solo'),
         (8, 'Katy Perry', 'Solo'),
         (9, 'Metallica', 'Banda'),
@@ -81,7 +82,7 @@ INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, con
         (13, 'Ombrim', '03:00', 0, '05-06-2020', './media/music/Ombrim.mp3'),
         (14, 'Rap God', '06:03', 0, '15-10-2013', './media/music/Rap_God.mp3'),
         (15, 'Todo Mundo Vai Sofrer', '03:02', 0, '28-06-2019', './media/music/Todo_Mundo_Vai_Sofrer.mp3'),
-        (16, 'Walk', '05:15', 0, '23-08-1994', './media/music/Walk.mp3'); 
+        (16, 'Walk', '05:15', 0, '23-08-1994', './media/music/Walk.mp3'),
 --Inserção Podcast
         (17, 'MANO BROWN - Podpah', '02:53:58', 0, '07-03-2022', './media/music/MANO_BROWN_Podpah.mp3'),
         (18, 'LULA - Podpah', '02:36:20', 0, '2-12-2021', './media/podcast/LULA_Podpah.mp3'),

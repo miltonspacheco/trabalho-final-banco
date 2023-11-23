@@ -38,14 +38,6 @@ drop table Midia
 
 ----
 
-drop table Banda
-
-----
-
-drop table Cantor_Solo
-
-----
-
 drop table Album
 
 ----
@@ -58,8 +50,12 @@ drop table Playlist
 
 ----
 
+drop table Assinatura
+
+----
+
 drop table Usuario
 
 ----
 
-drop table Assinatura
+drop table Plano_Assinatura
