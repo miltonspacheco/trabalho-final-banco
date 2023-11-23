@@ -39,3 +39,8 @@ pip install pydub
 ```sh
 pip install -U matplotlib
 ```
+
+```sh
+pip install simpleaudio
+```
+

@@ -20,6 +20,7 @@ CREATE TABLE Usuario (
 id_usuario integer PRIMARY KEY,
 nome varchar(50),
 email varchar(50),
+senha varchar(50),
 cpf varchar(11),
 id_plano integer,
 FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano)
