@@ -55,7 +55,7 @@ inserts['Genero_Musica'] = sql_read[10].strip()
 inserts['Podcaster'] = sql_read[11].strip()
 inserts['Podcast'] = sql_read[12].strip()
 inserts['Tema'] = sql_read[13].strip()
-inserts['Podcast_Tema'] = sql_read[14].strip() 
+inserts['Podcast_Tema'] = sql_read[14].strip()
 
 del sql_content
 del sql_read
