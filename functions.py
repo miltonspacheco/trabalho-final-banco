@@ -1,5 +1,6 @@
 from reading import *
 from settings import *
+from play import *
 
 def connect_db():
     try:
@@ -27,7 +28,37 @@ def connect_db():
         print(f"Erro ao conectar ao PostgreSQL: {e}")
         return None
 
-# def play_midia(connect):
+def play_media(connect):
+    print("Escolha qual tipo de mídia você deseja ouvir:")
+    tipo = int(input("""
+    1 - Música
+    2 - Podcast \n"""))
+    
+    if(tipo == 1):
+        audio_type = 'music'
+        print("Músicas disponíveis:\n")
+
+        select_query = """
+        select mi.nome from midia as mi join musica as mu on mi.id_midia = mu.id_midia
+        """
+    else:
+        audio_type = 'podcast'
+        print("Podcasts disponíveis:\n")
+
+        select_query = """
+        select mi.nome from midia as mi join podcast as po on mi.id_midia = po.id_midia
+        """
+
+    cursor = connect.cursor()
+    cursor.execute(select_query)
+    myresult = cursor.fetchall()
+    for x in myresult:
+        print(x)
+    
+    audio_name = input("\nDigite o nome da mídia escolhida: ")
+    print("Para parar a reprodução basta usar o comando Ctrl + C")
+    
+    play(audio_type, audio_name)
 
 
 def drop_all_tables(connect):
@@ -185,9 +216,9 @@ def delete_sql(connect):
 def consulta1(connect):
     select_query = """
     select g.nome, avg(m.duracao) as media
-    from Musica as m
-    join Genero_Musica as gm on m.id_midia = gm.id_midia
-    join Genero as g on gm.id_genero = g.id_genero
+    from musica as m
+    join genero_Musica as gm on m.id_midia = gm.id_midia
+    join genero as g on gm.id_genero = g.id_genero
     group by g.nome
     """
     print("Primeira Consulta: Selecione a média da duração das músicas por gênero musical.")
@@ -218,9 +249,9 @@ def consulta2(connect):
     select_query = """
     select u.nome as usuario, 
     count(*) as qtd_musicas_tocadas, sum(mi.duracao) as duracao_total_musicas_tocadas
-    from Usuario as u
-    join Reproducao as r on r.id_usuario = u_usuario
-    join Midia as mi on mi.id_midia = r.id_midiaa
+    from usuario as u
+    join reproducao as r on r.id_usuario = u_usuario
+    join midia as mi on mi.id_midia = r.id_midiaa
     group by u.nome
     """
     print("\nSegunda Consulta: Selecione a quantidade total de músicas tocadas e a duração total considerando a duração individual de cada música por usuario.")
@@ -262,10 +293,10 @@ def consulta2(connect):
 def consulta3(connect):
     select_query = """
     select u.nome, u.e-mail, avg(m.qtde_streamings) as media_streamings
-    from Assinatura as a
-    join Usuario as u on u.id_plano = a.id_plano
-    join Reproducao as r on r.id_usuario = u.id_usuario
-    join Midia as m on m.id_midia = r.id_midia
+    from assinatura as a
+    join usuario as u on u.id_plano = a.id_plano
+    join reproducao as r on r.id_usuario = u.id_usuario
+    join midia as m on m.id_midia = r.id_midia
     where r.data between '01/10/2023' and '31/10/2023'
     and a.nome = 'Gratuito'
     group by u.nome, u.e-mail

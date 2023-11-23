@@ -68,8 +68,8 @@ try:
         if choice == 11:
             drop_all_tables(con)
 
-        # if choice == 12:
-            # play_midia(con)
+        if choice == 12:
+            play_media(con)
 
 except psycopg2.Error as err:
     print("Erro na conexão com o PostgreSQL:", err)

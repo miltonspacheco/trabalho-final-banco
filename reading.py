@@ -1,3 +1,9 @@
+import psycopg2
+from psycopg2 import errorcodes
+from pydub import AudioSegment
+from pydub.playback import play
+import matplotlib.pyplot as plt
+
 # Valores para criação de tabelas do Banco de Dados 
 tables = {} 
 
