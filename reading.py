@@ -59,7 +59,7 @@ inserts['Genero_Musica'] = sql_read[12].strip()
 inserts['Podcaster'] = sql_read[13].strip()
 inserts['Podcast'] = sql_read[14].strip()
 inserts['Tema'] = sql_read[15].strip()
-#inserts['Podcast_Tema'] = sql_read[16].strip()
+inserts['Podcast_Tema'] = sql_read[16].strip()
 
 del sql_content
 del sql_read
@@ -92,34 +92,6 @@ drop['Artista'] = sql_read[13].strip()
 drop['Playlist'] = sql_read[14].strip()  
 drop['Usuario'] = sql_read[15].strip() 
 drop['Assinatura'] = sql_read[16].strip()  
-
-del sql_content
-del sql_read
-
-##############################################################
-
-# Valores para teste de update
-update = {}
-
-with open('sql_files/update.sql', 'r') as file:
-    sql_content = file.read()
-
-# Split SQL based on the marker 
-sql_read = sql_content.split('----')
-
-del sql_content
-del sql_read
-
-##############################################################
-
-# Valores para teste de delete
-delete = {}
-
-with open('sql_files/delete.sql', 'r') as file:
-    sql_content = file.read()
-
-# Split SQL based on the marker 
-sql_read = sql_content.split('----')
 
 del sql_content
 del sql_read

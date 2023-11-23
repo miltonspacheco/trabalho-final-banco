@@ -11,8 +11,8 @@ try:
         1.  CRUD
         2.  Criar todas as tabelas
         3.  Inserir todos os valores
-        4.  Rodar os Updates
-        5.  Rodar os Deletes
+        4.  Rodar os Updates (tirar)
+        5.  Rodar os Deletes (tirar)
         6.  Consulta 1
         7.  Consulta 2
         8.  Consulta 3 
