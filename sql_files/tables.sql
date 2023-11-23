@@ -57,7 +57,7 @@ FOREIGN KEY(id_artista) REFERENCES Artista (id_artista)
 ----
 
 CREATE TABLE Banda (
-data_formacao date,
+data_formacao integer,
 id_artista integer PRIMARY KEY,
 FOREIGN KEY(id_artista) REFERENCES Artista (id_artista)
 );
@@ -66,7 +66,7 @@ FOREIGN KEY(id_artista) REFERENCES Artista (id_artista)
 
 CREATE TABLE Midia (
 id_midia integer PRIMARY KEY,
-nome varchar(50),
+nome varchar(100),
 duracao time,
 qtd_streamings integer,
 data_lancamento date,
@@ -77,9 +77,9 @@ conteudo varchar(50)
 
 CREATE TABLE Reproducao (
 data_reproducao timestamp,
-id_reproducao integer PRIMARY KEY,
 id_midia integer,
 id_usuario integer,
+PRIMARY KEY(id_usuario, id_midia),
 FOREIGN KEY(id_usuario) REFERENCES Usuario (id_usuario),
 FOREIGN KEY(id_midia) REFERENCES Midia (id_midia)
 );
