@@ -1,9 +1,15 @@
+--Inserção Assinaturas
+INSERT INTO Plano_Assinatura (id_plano, nome, beneficios, valor) VALUES
+        (1, 'Standard', 'Todas musicas disponiveis', 0),
+        (2, 'Plus', 'Todas musicas e podcasts disponiveis', 5),
+        (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15);
+
 
 --Inserção Assinaturas
-INSERT INTO Assinatura (id_plano, nome, beneficios, valor, data_inicio, data_vencimento) VALUES
-        (1, 'Standard', 'Todas musicas disponiveis', 0, '01-01-2023', '01-01-2024'),
-        (2, 'Plus', 'Todas musicas e podcasts disponiveis', 5, '01-01-2023', '01-01-2024'),
-        (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15, '01-01-2023', '01-01-2024');
+INSERT INTO Assinatura (id_assinatura, id_usuario, id_plano, data_inicio, data_vencimento) VALUES
+        (1, 1, 1, '01-01-2023', '01-01-2024'),
+        (2, 2, 2, '01-01-2023', '01-01-2024'),
+        (3, 3, 3, '01-01-2023', '01-01-2024');
 
 ---- 
 --Inserção Generos Musicais
