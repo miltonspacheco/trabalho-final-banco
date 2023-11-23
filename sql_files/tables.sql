@@ -1,10 +1,17 @@
-CREATE TABLE Assinatura (
+CREATE TABLE Plano_Assinatura (
 beneficios varchar(100),
 id_plano integer PRIMARY KEY,
 valor numeric,
+nome varchar(50)
+);
+
+----
+
+CREATE TABLE Assinatura (
+
 data_inicio timestamp,
 data_vencimento timestamp,
-nome varchar(50)
+FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano)
 );
 
 ----
@@ -32,7 +39,8 @@ FOREIGN KEY(id_usuario) REFERENCES Usuario (id_usuario)
 
 CREATE TABLE Artista (
 id_artista integer PRIMARY KEY,
-nome varchar(50)
+nome varchar(50),
+tipo varchar(50)
 );
 
 ----
@@ -125,7 +133,8 @@ FOREIGN KEY(id_midia) REFERENCES Musica (id_midia)
 
 CREATE TABLE Podcaster (
 id_podcaster integer PRIMARY KEY,
-nome varchar(50)
+nome varchar(50),
+descricao varchar(50)
 );
 
 ----
