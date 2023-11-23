@@ -28,6 +28,7 @@ def connect_db():
         print(f"Erro ao conectar ao PostgreSQL: {e}")
         return None
 
+
 def play_media(connect):
     print("Escolha qual tipo de mídia você deseja ouvir:")
     tipo = int(input("""
@@ -142,8 +143,8 @@ def update_value(connect):
         if name in table_names:
             for table_name in tables:
                 table_description = tables[table_name]
-                if table_name == name:
-                    print("Para criar a tabela {}, foi utilizado o seguinte código: \n{}".format(table_name, table_description))
+                if table_name.lower() == name:
+                    print("\nPara criar a tabela {}, foi utilizado o seguinte código: \n{}".format(table_name, table_description))
 
             atributo = input("Digite o nome do atributo a ser alterado: ")
             valor = input("Digite o novo valor: ")
@@ -153,6 +154,39 @@ def update_value(connect):
             query = f"update {name} set {atributo} = %s where {codigo_f} = %s;"
             cursor.execute(query, (valor, codigo))
             print("Atributo atualizado com sucesso!")
+        else:
+            print("Tabela não encontrada.")
+    except psycopg2.Error as err:
+        print(err)
+    finally:
+        connect.commit()
+        cursor.close()
+
+def delete_value(connect):
+    print("\n---DELETAR VALOR---")
+    # Listar tabelas disponíveis
+    cursor = connect.cursor()
+    cursor.execute("select table_name from information_schema.tables where table_schema = 'public';")
+    tables_list = cursor.fetchall()
+    table_names = [table[0] for table in tables_list]
+    print("Tabelas disponíveis:")
+    for table_name in table_names:
+        print("Nome: {}".format(table_name))
+
+    try:
+        name = input("\nDigite o nome da tabela que deseja atualizar: ")
+        if name in table_names:
+            for table_name in tables:
+                table_description = tables[table_name]
+                if table_name.lower() == name:
+                    print("\nPara criar a tabela {}, foi utilizado o seguinte código: \n{}".format(table_name, table_description))
+
+            codigo_f = input("Digite o nome da chave primária: ")
+            codigo = input("Digite o valor da chave primária: ")
+
+            query = f"delete from {name} where {codigo_f} = {codigo}"
+            cursor.execute(query)
+            print("Tupla deletada com sucesso!")
         else:
             print("Tabela não encontrada.")
     except psycopg2.Error as err:
@@ -171,40 +205,6 @@ def insert_sql(connect):
         try:
             print("Inserindo valores para {}: ".format(insert_name), end='')
             cursor.execute(insert_description)
-        except psycopg2.Error as err:
-            print(err)
-        else:
-            print("OK")
-    connect.commit()
-    cursor.close()
-
-
-def update_sql(connect):
-    print("\n---ATUALIZAR TESTE---")
-    # Atualização de valores nas tabelas
-    cursor = connect.cursor()
-    for update_name in update:
-        update_description = update[update_name]
-        try:
-            print("Teste de atualização de valores para {}: ".format(update_name), end='')
-            cursor.execute(update_description)
-        except psycopg2.Error as err:
-            print(err)
-        else:
-            print("OK")
-    connect.commit()
-    cursor.close()
-
-
-def delete_sql(connect):
-    print("\n---DELETE TEST---")
-    # Exclusão de valores nas tabelas
-    cursor = connect.cursor()
-    for delete_name in delete:
-        delete_description = delete[delete_name]
-        try:
-            print("Teste de exclusão de valores para {}: ".format(delete_name), end='')
-            cursor.execute(delete_description)
         except psycopg2.Error as err:
             print(err)
         else:
