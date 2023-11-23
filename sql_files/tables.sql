@@ -8,10 +8,13 @@ nome varchar(50)
 ----
 
 CREATE TABLE Assinatura (
-
+id_assinatura integer PRIMARY KEY,
 data_inicio timestamp,
 data_vencimento timestamp,
-FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano)
+id_plano integer,
+id_usuario integer,
+FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano),
+FOREIGN KEY(id_usuario) REFERENCES Usuario (id_usuario)
 );
 
 ----
@@ -20,6 +23,7 @@ CREATE TABLE Usuario (
 id_usuario integer PRIMARY KEY,
 nome varchar(50),
 email varchar(50),
+senha varchar(50),
 cpf varchar(11),
 id_plano integer,
 FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano)

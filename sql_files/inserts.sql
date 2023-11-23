@@ -1,9 +1,15 @@
+--Inserção Assinaturas
+INSERT INTO Plano_Assinatura (id_plano, nome, beneficios, valor) VALUES
+        (1, 'Standard', 'Todas musicas disponiveis', 0),
+        (2, 'Plus', 'Todas musicas e podcasts disponiveis', 5),
+        (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15);
+
 
 --Inserção Assinaturas
-INSERT INTO Assinatura (id_plano, nome, beneficios, valor, data_inicio, data_vencimento) VALUES
-        (1, 'Standard', 'Todas musicas disponiveis', 0, '01-01-2023', '01-01-2024'),
-        (2, 'Plus', 'Todas musicas e podcasts disponiveis', 5, '01-01-2023', '01-01-2024'),
-        (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15, '01-01-2023', '01-01-2024');
+INSERT INTO Assinatura (id_assinatura, id_usuario, id_plano, data_inicio, data_vencimento) VALUES
+        (1, 1, 1, '01-01-2023', '01-01-2024'),
+        (2, 2, 2, '01-01-2023', '01-01-2024'),
+        (3, 3, 3, '01-01-2023', '01-01-2024');
 
 ---- 
 --Inserção Generos Musicais
@@ -55,23 +61,23 @@ INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
 
 ---- 
 --Inserção Músicas
-INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento) VALUES
-        (1, 'Welcome To The Jungle', '04:34', 0, '01-10-1987'),
-        (2, 'Paradise City', '06:46', 0, '30-11-1988'),
-        (3, 'As It Was', '03:02', 0, '07-05-2021'),
-        (4, 'Back in Black', '04:15', 0, '25-07-1980'),
-        (5, 'Blinding Lights', '03:20', 0, '29-11-2019'),
-        (6, 'Conexao de Mafia', '03:45', 0, '15-03-2020'),
-        (7, 'Evidencias', '04:39', 0, '01-10-1987'),
-        (8, 'Goosebumps', '04:03', 0, '03-09-2016'),
-        (9, 'Last Friday Night', '03:50', 0, '06-06-2011'),
-        (10, 'Master of Puppets', '08:38', 0, '03-03-1986'),
-        (11, 'Namorar Pra Que', '02:49', 0, '18-01-2019'),
-        (12, 'Nem de Graca', '02:48', 0, '15-11-2019'),
-        (13, 'Ombrim', '03:00', 0, '05-06-2020'),
-        (14, 'Rap God', '06:03', 0, '15-10-2013'),
-        (15, 'Todo Mundo Vai Sofrer', '03:02', 0, '28-06-2019'),
-        (16, 'Walk', '05:15', 0, '23-08-1994');
+INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, conteudo) VALUES
+        (1, 'Welcome To The Jungle', '04:34', 0, '01-10-1987', './media/music/Welcome_To_The_Jungle.mp3'),
+        (2, 'Paradise City', '06:46', 0, '30-11-1988', './media/music/Paradise_City.mp3'),
+        (3, 'As It Was', '03:02', 0, '07-05-2021', './media/music/As_It_Was.mp3'),
+        (4, 'Back in Black', '04:15', 0, '25-07-1980', './media/music/Back_In_Black.mp3'),
+        (5, 'Blinding Lights', '03:20', 0, '29-11-2019', './media/music/Blinding_Lights.mp3'),
+        (6, 'Conexao de Mafia', '03:45', 0, '15-03-2020', './media/music/Conexoes_de_Mafia.mp3'),
+        (7, 'Evidencias', '04:39', 0, '01-10-1987', './media/music/Evidencias.mp3'),
+        (8, 'Goosebumps', '04:03', 0, '03-09-2016', './media/music/Goosebumps.mp3'),
+        (9, 'Last Friday Night', '03:50', 0, '06-06-2011', './media/music/Last_Friday_Night.mp3'),
+        (10, 'Master of Puppets', '08:38', 0, '03-03-1986', './media/music/Master_of_Puppets.mp3'),
+        (11, 'Namorar Pra Que', '02:49', 0, '18-01-2019', './media/music/Namorar_Pra_Que.mp3'),
+        (12, 'Nem de Graca', '02:48', 0, '15-11-2019', './media/music/Nem_de_Graca.mp3'),
+        (13, 'Ombrim', '03:00', 0, '05-06-2020', './media/music/Ombrim.mp3'),
+        (14, 'Rap God', '06:03', 0, '15-10-2013', './media/music/Rap_God.mp3'),
+        (15, 'Todo Mundo Vai Sofrer', '03:02', 0, '28-06-2019', './media/music/Todo_Mundo_Vai_Sofrer.mp3'),
+        (16, 'Walk', '05:15', 0, '23-08-1994', './media/music/Walk.mp3');
 ---- 
 --Inserção Músicas
 INSERT INTO Musica (id_midia, id_album, letra) VALUES
@@ -1058,12 +1064,12 @@ INSERT INTO Podcaster (id_podcaster, nome, descricao) VALUES
 
 ---- 
 --Inserção Podcast
-INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento) VALUES
-        (17, 'MANO BROWN - Podpah', '02:53:58', 0, '07-03-2022'),
-        (18, 'LULA - Podpah', '02:36:20', 0, '2-12-2021'),
-        (19, 'Web3 vale o hype? - Hipsters Ponto Tech', '04:34', 0, '24-10-2023'),
-        (20, 'Loki 2: O glorioso proposito do deus da trapaca - NerdCast', '04:34', 0, '17-11-2023'),
-        (21, 'SPACE TODAY - Flow Podcast', '02:17:51', 0, '21-10-2020');
+INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, conteudo) VALUES
+        (17, 'MANO BROWN - Podpah', '02:53:58', 0, '07-03-2022', './media/music/MANO_BROWN_Podpah.mp3'),
+        (18, 'LULA - Podpah', '02:36:20', 0, '2-12-2021', './media/podcast/LULA_Podpah.mp3'),
+        (19, 'Web3 vale o hype? - Hipsters Ponto Tech', '04:34', 0, '24-10-2023', './media/podcast/Web3_vale_o_hype.mp3'),
+        (20, 'Loki 2: O glorioso proposito do deus da trapaca - NerdCast', '04:34', 0, '17-11-2023', './media/podcast/nerdcast_908_loki_2.mp3'),
+        (21, 'SPACE TODAY - Flow Podcast', '02:17:51', 0, '21-10-2020', './media/podcast/SPACE_TODAY_FlowPodcast.mp3');
 ----
 --Inserção Podcast
 INSERT INTO Podcast (id_midia, id_podcaster) VALUES
@@ -1084,8 +1090,8 @@ INSERT INTO Podcast_Tema (id_midia, id_tema) VALUES
 
 ----
 --Inserção Usuario
-INSERT INTO Usuario (id_usuario, id_plano, nome, email, cpf) VALUES
-        (1, 1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097'); 
+INSERT INTO Usuario (id_usuario, id_plano, nome, email, cpf, senha) VALUES
+        (1, 1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097', '12345'); 
 
 ----
 --Inserção Reproducao
