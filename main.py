@@ -17,8 +17,8 @@ try:
         7.  Delete valor
         8.  Consulta 1
         9.  Consulta 2
-        10.  Consulta 3 
-        11.  Mostrar tabela
+        10. Consulta 3 
+        11. Mostrar tabela
         12. Deletar todas as tabelas
         13. Reproduzir mídia
         14. Simulação usuário

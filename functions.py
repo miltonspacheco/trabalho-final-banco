@@ -32,10 +32,12 @@ def connect_db():
 def play_media(connect):
     print("\n---REPRODUZIR MIDIA---")
     cursor = connect.cursor()
-    print("Escolha qual tipo de mídia você deseja ouvir:")
-    tipo = int(input("""
-    1 - Música
-    2 - Podcast \n"""))
+    print("\nEscolha qual tipo de mídia você deseja ouvir:")
+    print("Selecione uma opção:")
+    print("1 - Música")
+    print("2 - Podcast")
+    tipo = int(input("Opção: "))
+    print()
     
     if(tipo == 1):
         audio_type = 'music'
@@ -284,6 +286,7 @@ def consulta1(connect):
 
     # Display the plot
     plt.show()
+    cursor.close()
 
 
 def consulta2(connect):
@@ -329,18 +332,19 @@ def consulta2(connect):
 
     # Display the plot
     plt.show()
+    cursor.close()
 
 
 def consulta3(connect):
     select_query = """
-    select u.nome, u.e-mail, avg(m.qtde_streamings) as media_streamings
+    select u.nome, u.email, avg(m.qtde_streamings) as media_streamings
     from assinatura as a
     join usuario as u on u.id_plano = a.id_plano
     join reproducao as r on r.id_usuario = u.id_usuario
     join midia as m on m.id_midia = r.id_midia
     where r.data between '01/10/2023' and '31/10/2023'
     and a.nome = 'Gratuito'
-    group by u.nome, u.e-mail
+    group by u.nome, u.email
     """
     print("\nTerceira Consulta: Selecione o nome e email dos usuários como plano de assinatura gratuito que ouviram música no mês de outubro de 2023, selecione também a média da quantidade de streamings.")
     cursor = connect.cursor()
@@ -365,7 +369,131 @@ def consulta3(connect):
 
     # Display the plot
     plt.show()
+    cursor.close()
 
+
+# Função para realizar o login
+def login(connect, email, senha):
+    try:    
+        cursor = connect.cursor()
+        query = "select id_usuario, nome from Usuario where email = %s and senha = %s"
+        cursor.execute(query, (email, senha))
+        user = cursor.fetchone()
+    except psycopg2.Error as e:
+        connect.rollback()
+        print("Erro ao atualizar o usuário:", e)
+    cursor.close()
+    return user  # Retorna as informações do usuário se as credenciais estiverem corretas
+
+
+# Função para cadastrar um novo usuário
+def cadastrar_usuario(connect, nome, email, senha, cpf):
+    try:    
+        cursor = connect.cursor()
+        query = "insert into Usuario (nome, email, senha, cpf) values (%s, %s, %s, %s) returning id_usuario"
+        cursor.execute(query, (nome, email, senha, cpf))
+        novo_id_usuario = cursor.fetchone()[0]
+        connect.commit()
+    except psycopg2.Error as e:
+        connect.rollback()
+        print("Erro ao atualizar o usuário:", e)
+    cursor.close()
+    return novo_id_usuario  # Retorna o ID do novo usuário cadastrado
+    
+
+def editar_usuario(connect, email, senha, novo_email, nova_senha):
+    try:
+        cursor = connect.cursor()
+        query = "update Usuario set email = %s, senha = %s where email = %s and senha = %s"
+        cursor.execute(query, (email, senha, novo_email, nova_senha))
+        connect.commit()
+    except psycopg2.Error as e:
+        connect.rollback()
+        print("Erro ao atualizar o usuário:", e)
+    cursor.close()
+    
+
+def show_message():
+    print("\n--- SIMULAÇÃO ---")
+    print("\nBem-vindo(a) à plataforma de streaming DebMil!")
+    print("Selecione uma opção:")
+    print("1 - Cadastro")
+    print("2 - Login")
+
+
+def user_welcome(connect):
+    show_message()
+
+    option = int(input("Opção: "))
+
+    if option == 2:
+        email = input("Digite seu email: ")
+        senha = input("Digite sua senha: ")
+
+        usuario = login(connect, email, senha)
+
+        if usuario:
+            id_usuario, nome = usuario
+            print(f"Usuário {nome} logado com sucesso!")
+        else:
+            char = input("Usuário inválido. Deseja fazer o cadastro? (S)im / (N)ão: ")
+            if char.upper() == 'N':
+                return
+
+    if option == 1 or not usuario:
+        user = input("Digite seu nome de usuário: ")
+        email = input("Digite um email: ")
+        senha = input("Digite uma senha: ")
+        cpf = input("Digite seu cpf: ")
+
+        novo_id = cadastrar_usuario(connect, user, email, senha, cpf)
+
+        if novo_id:
+            print(f"Novo usuário cadastrado com o id {novo_id}!")
+
+    return email, senha
+
+
+def user_options(connect, email, senha):
+    power_up = 1
+    while power_up == 1:
+        print("\nO que você deseja fazer?")
+        print("\nSelecione uma opção:")
+        print("1 - Reproduzir mídia")
+        print("2 - Editar perfil")
+        print("3 - Sair")
+        choice = int(input("Opção: "))
+
+        if choice == 1:
+            play_media(connect) #TODO update no historico
+        elif choice == 2:
+            print("\nSelecione uma opção:")
+            print("1 - Alterar email")
+            print("2 - Alterar senha")
+            alt = int(input("Opção: "))
+
+            if alt == 1:
+                novo_email = input("Digite o novo email: ")
+                nova_senha = senha
+            else:
+                nova_senha = input("Digite a nova senha: ")
+                novo_email = email
+
+            editar_usuario(connect, email, senha, novo_email, nova_senha)
+            print("Usuário alterado com sucesso") #o usuario nao esta sendo alterado
+        else:
+            print("Até a próxima!")
+            break
+
+
+def simulate(connect):
+    try:
+        email, senha = user_welcome(connect)
+    except:
+        print("Não foi possível fazer o login")
+        return
+    user_options(connect, email, senha)
+    
 
 def exit_db(connect):
     print("\n---EXIT DB---")
