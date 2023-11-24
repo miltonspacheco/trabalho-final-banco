@@ -26,7 +26,7 @@ try:
         print(interface)
 
         choice = int(input("Opção: "))
-        if choice < 0 or choice > 12:
+        if choice < 0 or choice > 14:
             print("Erro tente novamente")
             choice = int(input())
 
@@ -76,7 +76,8 @@ try:
         if choice == 13:
             play_media(con)
 
-        # if choice == 14:
+        if choice == 14:
+            simulate(con)
             
 
 except psycopg2.Error as err:

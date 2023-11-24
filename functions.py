@@ -30,6 +30,8 @@ def connect_db():
 
 
 def play_media(connect):
+    print("\n---REPRODUZIR MIDIA---")
+    cursor = connect.cursor()
     print("Escolha qual tipo de mídia você deseja ouvir:")
     tipo = int(input("""
     1 - Música
@@ -50,7 +52,6 @@ def play_media(connect):
         select mi.nome from midia as mi join podcast as po on mi.id_midia = po.id_midia
         """
 
-    cursor = connect.cursor()
     cursor.execute(select_query)
     myresult = cursor.fetchall()
     for x in myresult:
@@ -59,6 +60,7 @@ def play_media(connect):
     audio_name = input("\nDigite o nome da mídia escolhida: ")
     print("Para parar a reprodução basta usar o comando Ctrl + C")
     
+    cursor.close()
     play(audio_type, audio_name)
 
 
@@ -162,6 +164,7 @@ def update_value(connect):
         connect.commit()
         cursor.close()
 
+
 def delete_value(connect):
     print("\n---DELETAR VALOR---")
     # Listar tabelas disponíveis
@@ -198,7 +201,6 @@ def delete_value(connect):
 
 def insert_sql(connect):
     print("\n---INSERIR TESTE---")
-    # Inserção de valores nas tabelas
     cursor = connect.cursor()
     for insert_name in inserts:
         insert_description = inserts[insert_name]
@@ -212,9 +214,9 @@ def insert_sql(connect):
     connect.commit()
     cursor.close()
 
+
 def update_sql(connect):
     print("\n---UPDATE TEST---")
-    # Inesrsão dos valores nas tabelas
     cursor = connect.cursor()
     for update_name in updates:
         update_description = updates[update_name]
@@ -231,7 +233,6 @@ def update_sql(connect):
 
 def delete_sql(connect):
     print("\n---DELETE TEST---")
-    # Inesrsão dos valores nas tabelas
     cursor = connect.cursor()
     for delete_name in deletes:
         delete_description = deletes[delete_name]
@@ -242,6 +243,13 @@ def delete_sql(connect):
             print(err)
         else:
             print("OK")
+    connect.commit()
+    cursor.close()
+
+
+def simulate(connect):
+    print("\n---SIMULAÇÃO---")
+    cursor = connect.cursor()
     connect.commit()
     cursor.close()
 
