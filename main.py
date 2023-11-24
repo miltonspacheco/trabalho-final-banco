@@ -11,14 +11,17 @@ try:
         1.  CRUD
         2.  Criar todas as tabelas
         3.  Inserir todos os valores
-        4.  Update valor
-        5.  Delete valor
-        6.  Consulta 1
-        7.  Consulta 2
-        8.  Consulta 3 
-        9.  Mostrar tabela
-        10. Deletar todas as tabelas
-        11. Reproduzir mídia
+        4.  Updates - teste
+        5.  Deletes - teste
+        6.  Update valor
+        7.  Delete valor
+        8.  Consulta 1
+        9.  Consulta 2
+        10.  Consulta 3 
+        11.  Mostrar tabela
+        12. Deletar todas as tabelas
+        13. Reproduzir mídia
+        14. Simulação usuário
         0.  Desconectar do Banco de Dados\n """
         print(interface)
 
@@ -44,28 +47,37 @@ try:
             insert_sql(con)
 
         if choice == 4:
-            update_value(con)
+            update_sql(con)
 
         if choice == 5:
-            delete_value(con)
+            delete_sql(con)
 
         if choice == 6:
-            consulta1(con)
+            update_value(con)
 
         if choice == 7:
-            consulta2(con)
+            delete_value(con)
 
         if choice == 8:
-            consulta3(con)
+            consulta1(con)
 
         if choice == 9:
-            show_table(con)
+            consulta2(con)
 
         if choice == 10:
-            drop_all_tables(con)
+            consulta3(con)
 
         if choice == 11:
+            show_table(con)
+
+        if choice == 12:
+            drop_all_tables(con)
+
+        if choice == 13:
             play_media(con)
+
+        # if choice == 14:
+            
 
 except psycopg2.Error as err:
     print("Erro na conexão com o PostgreSQL:", err)
