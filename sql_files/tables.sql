@@ -1,8 +1,18 @@
 CREATE TABLE Plano_Assinatura (
-beneficios varchar(100),
 id_plano integer PRIMARY KEY,
+beneficios varchar(100),
 valor numeric,
 nome varchar(50)
+);
+
+----
+
+CREATE TABLE Usuario (
+id_usuario SERIAL PRIMARY KEY,
+nome varchar(50),
+email varchar(50),
+senha varchar(50),
+cpf varchar(11)
 );
 
 ----
@@ -13,20 +23,8 @@ data_inicio timestamp,
 data_vencimento timestamp,
 id_plano integer,
 id_usuario integer,
-FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano),
+FOREIGN KEY(id_plano) REFERENCES Plano_Assinatura (id_plano),
 FOREIGN KEY(id_usuario) REFERENCES Usuario (id_usuario)
-);
-
-----
-
-CREATE TABLE Usuario (
-id_usuario integer PRIMARY KEY,
-nome varchar(50),
-email varchar(50),
-senha varchar(50),
-cpf varchar(11),
-id_plano integer,
-FOREIGN KEY(id_plano) REFERENCES Assinatura (id_plano)
 );
 
 ----
@@ -55,22 +53,6 @@ tipo varchar(50),
 nome varchar(50),
 ano integer,
 id_artista integer,
-FOREIGN KEY(id_artista) REFERENCES Artista (id_artista)
-);
-
-----
-
-CREATE TABLE Cantor_Solo (
-aniversario date,
-id_artista integer PRIMARY KEY,
-FOREIGN KEY(id_artista) REFERENCES Artista (id_artista)
-);
-
-----
-
-CREATE TABLE Banda (
-data_formacao integer,
-id_artista integer PRIMARY KEY,
 FOREIGN KEY(id_artista) REFERENCES Artista (id_artista)
 );
 
@@ -138,7 +120,7 @@ FOREIGN KEY(id_midia) REFERENCES Musica (id_midia)
 CREATE TABLE Podcaster (
 id_podcaster integer PRIMARY KEY,
 nome varchar(50),
-descricao varchar(50)
+descricao varchar(100)
 );
 
 ----

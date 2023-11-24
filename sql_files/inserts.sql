@@ -5,23 +5,25 @@ INSERT INTO Plano_Assinatura (id_plano, nome, beneficios, valor) VALUES
         (3, 'Deluxe', 'Todas midias disponiveis e criacao de playlist', 15);
 
 
+----
+--Inserção Usuario
+INSERT INTO Usuario (id_usuario, nome, email, cpf, senha) VALUES
+        (1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097', '12345'); 
+
+
+----
 --Inserção Assinaturas
 INSERT INTO Assinatura (id_assinatura, id_usuario, id_plano, data_inicio, data_vencimento) VALUES
         (1, 1, 1, '01-01-2023', '01-01-2024'),
-        (2, 2, 2, '01-01-2023', '01-01-2024'),
-        (3, 3, 3, '01-01-2023', '01-01-2024');
+        (2, 1, 2, '01-01-2023', '01-01-2024'),
+        (3, 1, 3, '01-01-2023', '01-01-2024');
 
----- 
---Inserção Generos Musicais
-INSERT INTO Genero (id_genero, nome) VALUES
-        (1, 'Rock'),
-        (2, 'Pop'),
-        (3, 'Funk'),
-        (4, 'Sertanejo'),
-        (5, 'Pagode'),
-        (6, 'Metal'),
-        (8, 'Rap'),
-        (9, 'Trap');
+
+----
+--Inserção Playlist
+INSERT INTO Playlist (id_playlist, id_usuario, nome, descricao) VALUES
+        (1, 1, 'Rock Antigo', 'Musicas de rock antigos');
+
 
 ---- 
 --Inserção Artistas
@@ -31,7 +33,7 @@ INSERT INTO Artista (id_artista, nome, tipo) VALUES
         (3, 'Harry Styles', 'Solo'),
         (4, 'The Weeknd', 'Solo'),
         (5, 'Matue', 'Solo'),
-        (6, 'Chicaozinho e Xororo'),
+        (6, 'Chicaozinho e Xororo', 'Banda'),
         (7, 'Travis Scott', 'Solo'),
         (8, 'Katy Perry', 'Solo'),
         (9, 'Metallica', 'Banda'),
@@ -40,6 +42,7 @@ INSERT INTO Artista (id_artista, nome, tipo) VALUES
         (12, 'Marina Sena', 'Solo'),
         (13, 'Eminem', 'Solo'),
         (14, 'Pantera', 'Banda');
+
 
 ---- 
 --Inserção Albuns
@@ -59,9 +62,11 @@ INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
         (13, 'Disco', 'The Marshall Mathers LP 2', 2013, 13),
         (14, 'Disco', 'Vulgar Display of Power', 1992, 14);
 
+
 ---- 
---Inserção Músicas
+--Inseção Midias
 INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, conteudo) VALUES
+--Inserção Músicas
         (1, 'Welcome To The Jungle', '04:34', 0, '01-10-1987', './media/music/Welcome_To_The_Jungle.mp3'),
         (2, 'Paradise City', '06:46', 0, '30-11-1988', './media/music/Paradise_City.mp3'),
         (3, 'As It Was', '03:02', 0, '07-05-2021', './media/music/As_It_Was.mp3'),
@@ -77,7 +82,34 @@ INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, con
         (13, 'Ombrim', '03:00', 0, '05-06-2020', './media/music/Ombrim.mp3'),
         (14, 'Rap God', '06:03', 0, '15-10-2013', './media/music/Rap_God.mp3'),
         (15, 'Todo Mundo Vai Sofrer', '03:02', 0, '28-06-2019', './media/music/Todo_Mundo_Vai_Sofrer.mp3'),
-        (16, 'Walk', '05:15', 0, '23-08-1994', './media/music/Walk.mp3');
+        (16, 'Walk', '05:15', 0, '23-08-1994', './media/music/Walk.mp3'),
+--Inserção Podcast
+        (17, 'MANO BROWN - Podpah', '02:53:58', 0, '07-03-2022', './media/music/MANO_BROWN_Podpah.mp3'),
+        (18, 'LULA - Podpah', '02:36:20', 0, '2-12-2021', './media/podcast/LULA_Podpah.mp3'),
+        (19, 'Web3 vale o hype? - Hipsters Ponto Tech', '04:34', 0, '24-10-2023', './media/podcast/Web3_vale_o_hype.mp3'),
+        (20, 'Loki 2: O glorioso proposito do deus da trapaca - NerdCast', '04:34', 0, '17-11-2023', './media/podcast/nerdcast_908_loki_2.mp3'),
+        (21, 'SPACE TODAY - Flow Podcast', '02:17:51', 0, '21-10-2020', './media/podcast/SPACE_TODAY_FlowPodcast.mp3');
+
+
+----
+--Inserção Reproducao
+INSERT INTO Reproducao (id_midia, id_usuario, data_reproducao) VALUES
+        (1, 1, '2017-08-24 17:45:42'),
+        (2, 1, '2017-08-24 17:45:42'),
+        (3, 1, '2017-08-24 17:45:42'),
+        (4, 1, '2017-08-24 17:45:42'),
+        (5, 1, '2017-08-24 17:45:42');        
+
+
+----
+--Inserção Midia_Playlist
+INSERT INTO Midia_Playlist (id_midia, id_playlist) VALUES
+        (1, 1),
+        (2, 1),
+        (4, 1),
+        (10, 1);
+
+
 ---- 
 --Inserção Músicas
 INSERT INTO Musica (id_midia, id_album, letra) VALUES
@@ -1023,6 +1055,20 @@ INSERT INTO Musica (id_midia, id_album, letra) VALUES
                 Are you talkin'' to me? Are you talkin'' to me?
                 Walk on home, boy');
 
+
+---- 
+--Inserção Generos Musicais
+INSERT INTO Genero (id_genero, nome) VALUES
+        (1, 'Rock'),
+        (2, 'Pop'),
+        (3, 'Funk'),
+        (4, 'Sertanejo'),
+        (5, 'Pagode'),
+        (6, 'Metal'),
+        (8, 'Rap'),
+        (9, 'Trap');
+
+
 ----
 --Inserção de Relação entre Músicas e Gêneros
 INSERT INTO Genero_Musica (id_midia, id_genero) VALUES
@@ -1044,6 +1090,26 @@ INSERT INTO Genero_Musica (id_midia, id_genero) VALUES
     (15, 3), -- Todo Mundo Vai Sofrer - MC Kekel - Funk
     (16, 6); -- Walk - Pantera - Metal
 
+
+---- 
+--Inserção Podcaster
+INSERT INTO Podcaster (id_podcaster, nome, descricao) VALUES
+        (1, 'Podpah', 'O podcast mais zika da internet.'),
+        (2, 'Hipsters Ponto Tech', 'Discussoes sobre tecnologia, programacao, design, startups e as ultimas tecnologias.'),
+        (3, 'NerdCast', 'O mundo vira piada no Jovem Nerd.'),
+        (4, 'Flow Podcast', 'A melhor conversa que voce vai ouvir.');
+
+
+----
+--Inserção Podcast
+INSERT INTO Podcast (id_midia, id_podcaster) VALUES
+        (17, 1),
+        (18, 1),
+        (19, 2),
+        (20, 3),
+        (21, 4);
+
+
 ---- 
 --Inserção Temas de Podcast
 INSERT INTO Tema (id_tema, descricao) VALUES
@@ -1054,30 +1120,6 @@ INSERT INTO Tema (id_tema, descricao) VALUES
         (5, 'RPG'),
         (6, 'Entrevista');
 
----- 
---Inserção Podcaster
-INSERT INTO Podcaster (id_podcaster, nome, descricao) VALUES
-        (1, 'Podpah', 'O podcast mais zika da internet.'),
-        (2, 'Hipsters Ponto Tech', 'Discussoes sobre tecnologia, programacao, design, startups e as ultimas tecnologias.'),
-        (3, 'NerdCast', 'O mundo vira piada no Jovem Nerd.'),
-        (4, 'Flow Podcast', 'A melhor conversa que voce vai ouvir.');
-
----- 
---Inserção Podcast
-INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, conteudo) VALUES
-        (17, 'MANO BROWN - Podpah', '02:53:58', 0, '07-03-2022', './media/music/MANO_BROWN_Podpah.mp3'),
-        (18, 'LULA - Podpah', '02:36:20', 0, '2-12-2021', './media/podcast/LULA_Podpah.mp3'),
-        (19, 'Web3 vale o hype? - Hipsters Ponto Tech', '04:34', 0, '24-10-2023', './media/podcast/Web3_vale_o_hype.mp3'),
-        (20, 'Loki 2: O glorioso proposito do deus da trapaca - NerdCast', '04:34', 0, '17-11-2023', './media/podcast/nerdcast_908_loki_2.mp3'),
-        (21, 'SPACE TODAY - Flow Podcast', '02:17:51', 0, '21-10-2020', './media/podcast/SPACE_TODAY_FlowPodcast.mp3');
-----
---Inserção Podcast
-INSERT INTO Podcast (id_midia, id_podcaster) VALUES
-        (17, 1),
-        (18, 1),
-        (19, 2),
-        (20, 3),
-        (21, 4);
 
 ----
 --Inserção Podcast_Tema
@@ -1088,29 +1130,4 @@ INSERT INTO Podcast_Tema (id_midia, id_tema) VALUES
         (20, 3),
         (21, 6);        
 
-----
---Inserção Usuario
-INSERT INTO Usuario (id_usuario, id_plano, nome, email, cpf, senha) VALUES
-        (1, 1, 'Milton Pacheco', 'miltondasp@gmail.com', '04001743097', '12345'); 
 
-----
---Inserção Reproducao
-INSERT INTO Reproducao (id_midia, id_usuario, data_reproducao) VALUES
-        (1, 1, '2017-08-24 17:45:42'),
-        (2, 1, '2017-08-24 17:45:42'),
-        (3, 1, '2017-08-24 17:45:42'),
-        (4, 1, '2017-08-24 17:45:42'),
-        (5, 1, '2017-08-24 17:45:42');        
-
-----
---Inserção Playlist
-INSERT INTO Playlist (id_playlist, id_usuario, nome, descricao) VALUES
-        (1, 1, 'Rock Antigo', 'Musicas de rock antigos');
-
-----
---Inserção Midia_Playlist
-INSERT INTO Midia_Playlist (id_midia, id_playlist) VALUES
-        (1, 1),
-        (2, 1),
-        (4, 1),
-        (10, 1);
