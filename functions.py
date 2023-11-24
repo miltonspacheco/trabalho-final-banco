@@ -66,8 +66,8 @@ def drop_all_tables(connect):
     print("\n---DROP DB---")
     # Esvazia o Banco de Dados
     cursor = connect.cursor()
-    for drop_name in drop:
-        drop_description = drop[drop_name]
+    for drop_name in drops:
+        drop_description = drops[drop_name]
         try:
             print("Deletando {}: ".format(drop_name), end='')
             cursor.execute(drop_description)
@@ -205,6 +205,39 @@ def insert_sql(connect):
         try:
             print("Inserindo valores para {}: ".format(insert_name), end='')
             cursor.execute(insert_description)
+        except psycopg2.Error as err:
+            print(err)
+        else:
+            print("OK")
+    connect.commit()
+    cursor.close()
+
+def update_sql(connect):
+    print("\n---UPDATE TEST---")
+    # Inesrsão dos valores nas tabelas
+    cursor = connect.cursor()
+    for update_name in updates:
+        update_description = updates[update_name]
+        try:
+            print("Teste de atualização de valores para {}: ".format(update_name), end='')
+            cursor.execute(update_description)
+        except psycopg2.Error as err:
+            print(err)
+        else:
+            print("OK")
+    connect.commit()
+    cursor.close()
+
+
+def delete_sql(connect):
+    print("\n---DELETE TEST---")
+    # Inesrsão dos valores nas tabelas
+    cursor = connect.cursor()
+    for delete_name in deletes:
+        delete_description = deletes[delete_name]
+        try:
+            print("Teste de atualização de valores para {}: ".format(delete_name), end='')
+            cursor.execute(delete_description)
         except psycopg2.Error as err:
             print(err)
         else:

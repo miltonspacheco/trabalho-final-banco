@@ -57,7 +57,7 @@ inserts['Genero_Musica'] = sql_read[11].strip()
 inserts['Podcaster'] = sql_read[12].strip()
 inserts['Podcast'] = sql_read[13].strip()
 inserts['Tema'] = sql_read[14].strip()
-# inserts['Podcast_Tema'] = sql_read[15].strip()
+inserts['Podcast_Tema'] = sql_read[15].strip()
 
 del sql_content
 del sql_read
@@ -65,30 +65,92 @@ del sql_read
 ##############################################################
 
 # Valores para deletar as tabelas
-drop = {}
+drops = {}
 
-with open('sql_files/drop.sql', 'r') as file:
+with open('sql_files/drops.sql', 'r') as file:
     sql_content = file.read()
 
 # Split SQL based on the marker 
 sql_read = sql_content.split('----')
 
-drop['Podcast_Tema'] = sql_read[0].strip()
-drop['Tema'] = sql_read[1].strip()
-drop['Podcast'] = sql_read[2].strip()
-drop['Podcaster'] = sql_read[3].strip()
-drop['Genero_Musica'] = sql_read[4].strip()
-drop['Genero'] = sql_read[5].strip()
-drop['Musica'] = sql_read[6].strip()
-drop['Midia_Playlist'] = sql_read[7].strip()
-drop['Reproducao'] = sql_read[8].strip()
-drop['Midia'] = sql_read[9].strip()  
-drop['Album'] = sql_read[10].strip()  
-drop['Artista'] = sql_read[11].strip()  
-drop['Playlist'] = sql_read[12].strip()  
-drop['Assinatura'] = sql_read[13].strip()  
-drop['Usuario'] = sql_read[14].strip() 
-drop['Plano_Assinatura'] = sql_read[15].strip()
+drops['Podcast_Tema'] = sql_read[0].strip()
+drops['Tema'] = sql_read[1].strip()
+drops['Podcast'] = sql_read[2].strip()
+drops['Podcaster'] = sql_read[3].strip()
+drops['Genero_Musica'] = sql_read[4].strip()
+drops['Genero'] = sql_read[5].strip()
+drops['Musica'] = sql_read[6].strip()
+drops['Midia_Playlist'] = sql_read[7].strip()
+drops['Reproducao'] = sql_read[8].strip()
+drops['Midia'] = sql_read[9].strip()  
+drops['Album'] = sql_read[10].strip()  
+drops['Artista'] = sql_read[11].strip()  
+drops['Playlist'] = sql_read[12].strip()  
+drops['Assinatura'] = sql_read[13].strip()  
+drops['Usuario'] = sql_read[14].strip() 
+drops['Plano_Assinatura'] = sql_read[15].strip()
+
+del sql_content
+del sql_read
+
+##############################################################
+
+# Valores para update no Banco de Dados
+updates = {}
+
+with open('sql_files/updates.sql', 'r') as file:
+    sql_content = file.read()
+
+# Split SQL based on the marker 
+sql_read = sql_content.split('----')
+
+updates['Plano_Assinatura'] = sql_read[0].strip()
+updates['Usuario'] = sql_read[1].strip() 
+updates['Assinatura'] = sql_read[2].strip()  
+updates['Playlist'] = sql_read[3].strip()  
+updates['Artista'] = sql_read[4].strip()  
+updates['Album'] = sql_read[5].strip()  
+updates['Midia'] = sql_read[6].strip()  
+updates['Reproducao'] = sql_read[7].strip()
+updates['Midia_Playlist'] = sql_read[8].strip()
+updates['Musica'] = sql_read[9].strip()
+updates['Genero'] = sql_read[10].strip()
+updates['Genero_Musica'] = sql_read[11].strip()
+updates['Podcaster'] = sql_read[12].strip()
+updates['Podcast'] = sql_read[13].strip()
+updates['Tema'] = sql_read[14].strip()
+updates['Podcast_Tema'] = sql_read[15].strip()
+
+del sql_content
+del sql_read
+
+##############################################################
+
+# Valores para update no Banco de Dados
+deletes = {}
+
+with open('sql_files/deletes.sql', 'r') as file:
+    sql_content = file.read()
+
+# Split SQL based on the marker 
+sql_read = sql_content.split('----')
+
+deletes['Plano_Assinatura'] = sql_read[0].strip()
+deletes['Usuario'] = sql_read[1].strip() 
+deletes['Assinatura'] = sql_read[2].strip()  
+deletes['Playlist'] = sql_read[3].strip()  
+deletes['Artista'] = sql_read[4].strip()  
+deletes['Album'] = sql_read[5].strip()  
+deletes['Midia'] = sql_read[6].strip()  
+deletes['Reproducao'] = sql_read[7].strip()
+deletes['Midia_Playlist'] = sql_read[8].strip()
+deletes['Musica'] = sql_read[9].strip()
+deletes['Genero'] = sql_read[10].strip()
+deletes['Genero_Musica'] = sql_read[11].strip()
+deletes['Podcaster'] = sql_read[12].strip()
+deletes['Podcast'] = sql_read[13].strip()
+deletes['Tema'] = sql_read[14].strip()
+deletes['Podcast_Tema'] = sql_read[15].strip()
 
 del sql_content
 del sql_read
