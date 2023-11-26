@@ -16,7 +16,7 @@ try:
         print(interface)
 
         choice = int(input("Opção: "))
-        if choice < 0 or choice > 14:
+        if choice < 0 or choice > 3:
             print("Erro tente novamente")
             choice = int(input())
 
@@ -85,8 +85,8 @@ try:
         if choice == 3:
             interface = """\n       ---CONSULTAS---
             1.  Consulta 1
-            1.  Consulta 2
-            1.  Consulta 3
+            2.  Consulta 2
+            3.  Consulta 3
             0.  Voltar\n """
             print(interface)
 
