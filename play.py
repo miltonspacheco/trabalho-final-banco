@@ -1,8 +1,7 @@
 from pydub import AudioSegment
 import simpleaudio as sa
 
-def play(audio_type, audio_name):
-    file_path = f'media/{audio_type}/{audio_name}.mp3'
+def play(file_path):
 
     # Load the MP3 file
     audio = AudioSegment.from_file(file_path, format="mp3")

@@ -40,14 +40,12 @@ def play_media(connect):
     print()
     
     if(tipo == 1):
-        audio_type = 'music'
         print("Músicas disponíveis:\n")
 
         select_query = """
         select mi.nome from midia as mi join musica as mu on mi.id_midia = mu.id_midia
         """
     else:
-        audio_type = 'podcast'
         print("Podcasts disponíveis:\n")
 
         select_query = """
@@ -57,13 +55,20 @@ def play_media(connect):
     cursor.execute(select_query)
     myresult = cursor.fetchall()
     for x in myresult:
-        print(x)
+        print(x[0])
     
     audio_name = input("\nDigite o nome da mídia escolhida: ")
-    print("Para parar a reprodução basta usar o comando Ctrl + C")
+    select_query = f"""
+        select mi.conteudo from midia as mi where mi.nome = %s
+        """
     
+    cursor.execute(select_query, (audio_name, ))
+    url_result = cursor.fetchall()
+
+    print("Para parar a reprodução basta usar o comando Ctrl + C")
+
     cursor.close()
-    play(audio_type, audio_name)
+    play(url_result[0][0])
 
 
 def drop_all_tables(connect):

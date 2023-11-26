@@ -19,8 +19,8 @@ cpf varchar(11)
 
 CREATE TABLE Assinatura (
 id_assinatura integer PRIMARY KEY,
-data_inicio timestamp,
-data_vencimento timestamp,
+data_inicio date,
+data_vencimento date,
 id_plano integer,
 id_usuario integer,
 FOREIGN KEY(id_plano) REFERENCES Plano_Assinatura (id_plano),
