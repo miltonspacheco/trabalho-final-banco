@@ -70,7 +70,7 @@ conteudo varchar(50)
 ----
 
 CREATE TABLE Reproducao (
-id_reproducao integer PRIMARY KEY,
+id_reproducao SERIAL PRIMARY KEY,
 data_reproducao timestamp,
 id_midia integer,
 id_usuario integer,

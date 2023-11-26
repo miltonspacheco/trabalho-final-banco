@@ -256,18 +256,26 @@ def delete_sql(connect):
     cursor.close()
 
 
-def simulate(connect):
-    print("\n---SIMULAÇÃO---")
+def update_streamings(connect):
+    query = """
+    update midia
+    set qtd_streamings = (
+    select COUNT(*) 
+    from Reproducao 
+    where reproducao.id_midia = midia.id_midia
+    );"""
     cursor = connect.cursor()
+    cursor.execute(query)
     connect.commit()
     cursor.close()
 
 
 def consulta1(connect):
     select_query = """
-    select g.nome, avg(m.duracao) as media
-    from musica as m
-    join genero_Musica as gm on m.id_midia = gm.id_midia
+    select g.nome, avg(mi.duracao) as media
+    from musica as mu
+    join midia as mi on mi.id_midia = mu.id_midia
+    join genero_Musica as gm on mi.id_midia = gm.id_midia
     join genero as g on gm.id_genero = g.id_genero
     group by g.nome
     """
@@ -282,9 +290,11 @@ def consulta1(connect):
     genres = [row[0] for row in myresult]
     averages = [row[1] for row in myresult]
 
+    averages_seconds = [time.total_seconds() for time in averages]
+
     # Plotting the bar graph
     plt.figure(figsize=(10, 6))
-    plt.bar(genres, averages, color='skyblue')
+    plt.bar(genres, averages_seconds, color='skyblue')
     plt.xlabel('Gênero Musical')
     plt.ylabel('Média de Duração')
     plt.title('Média da Duração das Músicas por Gênero Musical')
@@ -301,8 +311,8 @@ def consulta2(connect):
     select u.nome as usuario, 
     count(*) as qtd_musicas_tocadas, sum(mi.duracao) as duracao_total_musicas_tocadas
     from usuario as u
-    join reproducao as r on r.id_usuario = u_usuario
-    join midia as mi on mi.id_midia = r.id_midiaa
+    join reproducao as r on r.id_usuario = u.id_usuario
+    join midia as mi on mi.id_midia = r.id_midia
     group by u.nome
     """
     print("\nSegunda Consulta: Selecione a quantidade total de músicas tocadas e a duração total considerando a duração individual de cada música por usuario.")
@@ -317,6 +327,8 @@ def consulta2(connect):
     song_counts = [row[1] for row in myresult]
     total_duration = [row[2] for row in myresult]
 
+    total_duration_seconds = [time.total_seconds() for time in total_duration]
+
     # Plotting the bar graphs
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
@@ -328,7 +340,7 @@ def consulta2(connect):
 
     # Creating a second y-axis 
     ax2 = ax1.twinx()
-    ax2.plot(users, total_duration, color='orange', marker='o')
+    ax2.plot(users, total_duration_seconds, color='orange', marker='o')
     ax2.set_ylabel('Duração Total das Músicas Tocadas (s)', color='orange')
     ax2.tick_params(axis='y', labelcolor='orange')
 
@@ -343,17 +355,17 @@ def consulta2(connect):
 
 
 def consulta3(connect):
+    update_streamings(connect) #update column qtd_streamings
+
     select_query = """
-    select u.nome, u.email, avg(m.qtde_streamings) as media_streamings
-    from assinatura as a
-    join usuario as u on u.id_plano = a.id_plano
+    select u.nome, u.email, avg(m.qtd_streamings) as media_streamings
+    from usuario as u
     join reproducao as r on r.id_usuario = u.id_usuario
-    join midia as m on m.id_midia = r.id_midia
-    where r.data between '01/10/2023' and '31/10/2023'
-    and a.nome = 'Gratuito'
+    join midia as m on r.id_midia = m.id_midia
+    where r.data_reproducao between '01/10/2023' and '31/10/2023'
     group by u.nome, u.email
     """
-    print("\nTerceira Consulta: Selecione o nome e email dos usuários como plano de assinatura gratuito que ouviram música no mês de outubro de 2023, selecione também a média da quantidade de streamings.")
+    print("\nTerceira Consulta: Selecione o nome e email dos usuários que ouviram música no mês de outubro de 2023, selecione também a média da quantidade de streamings.")
     cursor = connect.cursor()
     cursor.execute(select_query)
     myresult = cursor.fetchall()
@@ -370,7 +382,7 @@ def consulta3(connect):
     plt.bar(users, avg_streamings, color='green')
     plt.xlabel('Usuário')
     plt.ylabel('Média de Streamings')
-    plt.title('Média de Streamings por Usuário com Plano Gratuito em Outubro de 2023')
+    plt.title('Média de Streamings por Usuário em Outubro de 2023')
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
@@ -383,12 +395,12 @@ def consulta3(connect):
 def login(connect, email, senha):
     try:    
         cursor = connect.cursor()
-        query = "select id_usuario, nome from Usuario where email = %s and senha = %s"
+        query = "select id_usuario, nome from usuario where email = %s and senha = %s"
         cursor.execute(query, (email, senha))
         user = cursor.fetchone()
     except psycopg2.Error as e:
         connect.rollback()
-        print("Erro ao atualizar o usuário:", e)
+        print("Erro ao fazer login", e)
     cursor.close()
     return user  # Retorna as informações do usuário se as credenciais estiverem corretas
 
@@ -397,13 +409,13 @@ def login(connect, email, senha):
 def cadastrar_usuario(connect, nome, email, senha, cpf):
     try:    
         cursor = connect.cursor()
-        query = "insert into Usuario (nome, email, senha, cpf) values (%s, %s, %s, %s) returning id_usuario"
+        query = "insert into usuario (nome, email, senha, cpf) values (%s, %s, %s, %s) returning id_usuario"
         cursor.execute(query, (nome, email, senha, cpf))
         novo_id_usuario = cursor.fetchone()[0]
         connect.commit()
     except psycopg2.Error as e:
         connect.rollback()
-        print("Erro ao atualizar o usuário:", e)
+        print("Erro ao cadastrar o usuário:", e)
     cursor.close()
     return novo_id_usuario  # Retorna o ID do novo usuário cadastrado
     
@@ -472,7 +484,7 @@ def user_options(connect, email, senha):
         choice = int(input("Opção: "))
 
         if choice == 1:
-            play_media(connect) #TODO update na reproducao
+            play_media(connect) 
         elif choice == 2:
             print("\nSelecione uma opção:")
             print("1 - Alterar email")
