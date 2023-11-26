@@ -70,10 +70,10 @@ conteudo varchar(50)
 ----
 
 CREATE TABLE Reproducao (
+id_reproducao integer PRIMARY KEY,
 data_reproducao timestamp,
 id_midia integer,
 id_usuario integer,
-PRIMARY KEY(id_usuario, id_midia),
 FOREIGN KEY(id_usuario) REFERENCES Usuario (id_usuario),
 FOREIGN KEY(id_midia) REFERENCES Midia (id_midia)
 );

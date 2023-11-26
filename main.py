@@ -7,21 +7,11 @@ try:
 
     power_up = 1
     while power_up == 1:
+        
         interface = """\n       ---MENU---
-        1.  CRUD
-        2.  Criar todas as tabelas
-        3.  Inserir todos os valores
-        4.  Updates - teste
-        5.  Deletes - teste
-        6.  Update valor
-        7.  Delete valor
-        8.  Consulta 1
-        9.  Consulta 2
-        10. Consulta 3 
-        11. Mostrar tabela
-        12. Deletar todas as tabelas
-        13. Reproduzir mídia
-        14. Simulação usuário
+        1.  Acessar Plataforma
+        2.  Operações
+        3.  Consultas
         0.  Desconectar do Banco de Dados\n """
         print(interface)
 
@@ -38,46 +28,84 @@ try:
                 break
 
         if choice == 1:
-            crud(con)
+            simulate(con)
+            #play_media(con)
 
         if choice == 2:
-            create_all_tables(con)
+
+            interface = """\n       ---OPERAÇÕES---
+            1.  CRUD
+            2.  Deletar todas as tabelas
+            3.  Criar todas as tabelas
+            4.  Inserir todos os valores
+            5.  Updates
+            6.  Deletes
+            7.  Update valor
+            8.  Delete valor
+            9.  Mostrar tabela
+            0.  Voltar\n """
+            print(interface)
+
+            option = int(input("Opção: "))
+            if option < 0 or option > 9:
+                print("Erro tente novamente")
+                option = int(input())
+
+            if option == 0:
+                continue
+
+            if option == 1:
+                crud(con)
+
+            if option == 2:                
+                drop_all_tables(con)
+            
+            if option == 3:
+                create_all_tables(con)
+
+            if option == 4:
+                insert_sql(con)
+
+            if option == 5:
+                update_sql(con)
+
+            if option == 6:
+                delete_sql(con)
+
+            if option == 7:
+                update_value(con)
+
+            if option == 8:                
+                delete_value(con)
+
+            if option == 9:    
+                show_table(con)
+
 
         if choice == 3:
-            insert_sql(con)
+            interface = """\n       ---CONSULTAS---
+            1.  Consulta 1
+            1.  Consulta 2
+            1.  Consulta 3
+            0.  Voltar\n """
+            print(interface)
 
-        if choice == 4:
-            update_sql(con)
+            choice = int(input("Opção: "))
+            if choice < 0 or choice > 3:
+                print("Erro tente novamente")
+                choice = int(input())
 
-        if choice == 5:
-            delete_sql(con)
+            if choice == 0:
+                continue
 
-        if choice == 6:
-            update_value(con)
-
-        if choice == 7:
-            delete_value(con)
-
-        if choice == 8:
-            consulta1(con)
-
-        if choice == 9:
-            consulta2(con)
-
-        if choice == 10:
-            consulta3(con)
-
-        if choice == 11:
-            show_table(con)
-
-        if choice == 12:
-            drop_all_tables(con)
-
-        if choice == 13:
-            play_media(con)
-
-        if choice == 14:
-            simulate(con)
+            if choice == 1:
+                consulta1(con)
+            
+            if choice == 2:
+                consulta2(con)
+            
+            if choice == 3:
+                consulta3(con)
             
 
 except psycopg2.Error as err:

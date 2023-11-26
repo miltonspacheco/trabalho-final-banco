@@ -1,6 +1,7 @@
 from reading import *
 from settings import *
 from play import *
+from datetime import datetime
 
 def connect_db():
     try:
@@ -30,45 +31,46 @@ def connect_db():
 
 
 def play_media(connect):
-    print("\n---REPRODUZIR MIDIA---")
-    cursor = connect.cursor()
-    print("\nEscolha qual tipo de mídia você deseja ouvir:")
-    print("Selecione uma opção:")
-    print("1 - Música")
-    print("2 - Podcast")
-    tipo = int(input("Opção: "))
-    print()
-    
-    if(tipo == 1):
-        print("Músicas disponíveis:\n")
+        print("\n---REPRODUZIR MIDIA---")
+        cursor = connect.cursor()
+        print("\nEscolha qual tipo de mídia você deseja ouvir:")
+        print("Selecione uma opção:")
+        print("1 - Música")
+        print("2 - Podcast")
+        tipo = int(input("Opção: "))
+        print()
+        
+        if(tipo == 1):
+            print("Músicas disponíveis:\n")
 
-        select_query = """
-        select mi.nome from midia as mi join musica as mu on mi.id_midia = mu.id_midia
-        """
-    else:
-        print("Podcasts disponíveis:\n")
+            select_query = """
+            select mi.nome from midia as mi join musica as mu on mi.id_midia = mu.id_midia
+            """
+        else:
+            print("Podcasts disponíveis:\n")
 
-        select_query = """
-        select mi.nome from midia as mi join podcast as po on mi.id_midia = po.id_midia
-        """
+            select_query = """
+            select mi.nome from midia as mi join podcast as po on mi.id_midia = po.id_midia
+            """
 
-    cursor.execute(select_query)
-    myresult = cursor.fetchall()
-    for x in myresult:
-        print(x[0])
-    
-    audio_name = input("\nDigite o nome da mídia escolhida: ")
-    select_query = f"""
-        select mi.conteudo from midia as mi where mi.nome = %s
-        """
-    
-    cursor.execute(select_query, (audio_name, ))
-    url_result = cursor.fetchall()
+        cursor.execute(select_query)
+        myresult = cursor.fetchall()
+        for x in myresult:
+            print(x[0])
+        
+        audio_name = input("\nDigite o nome da mídia escolhida: ")
+        
+        select_query = f"""
+            select mi.conteudo from midia as mi where mi.nome = %s
+            """
 
-    print("Para parar a reprodução basta usar o comando Ctrl + C")
+        cursor.execute(select_query, (audio_name, ))
+        url_result = cursor.fetchall()
 
-    cursor.close()
-    play(url_result[0][0])
+        print("Para parar a reprodução basta usar o comando Ctrl + C")
+
+        cursor.close()
+        play(url_result[0][0])
 
 
 def drop_all_tables(connect):
@@ -470,7 +472,7 @@ def user_options(connect, email, senha):
         choice = int(input("Opção: "))
 
         if choice == 1:
-            play_media(connect) #TODO update no historico
+            play_media(connect) #TODO update na reproducao
         elif choice == 2:
             print("\nSelecione uma opção:")
             print("1 - Alterar email")
@@ -485,7 +487,7 @@ def user_options(connect, email, senha):
                 novo_email = email
 
             editar_usuario(connect, email, senha, novo_email, nova_senha)
-            print("Usuário alterado com sucesso") #o usuario nao esta sendo alterado
+            print("\nUsuário alterado com sucesso") #TODO: o usuario nao esta sendo alterado
         else:
             print("Até a próxima!")
             break
