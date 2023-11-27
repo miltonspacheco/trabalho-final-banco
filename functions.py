@@ -60,16 +60,34 @@ def play_media(connect):
         
         audio_name = input("\nDigite o nome da mídia escolhida: ")
         
-        select_query = f"""
-        select mi.conteudo from midia as mi where mi.nome = %s
-        """
-
-        cursor.execute(select_query, (audio_name, ))
+        query = "select mi.conteudo from midia as mi where mi.nome = %s"
+        cursor.execute(query, (audio_name, ))
         url_result = cursor.fetchall()
 
-        cursor.close()
+        try:
+            query = "select mu.letra from musica as mu join midia as mi on mu.id_midia = mi.id_midia where mi.nome = %s"
+            cursor.execute(query, (audio_name,))
+            letra = cursor.fetchall()
+            
+            if letra:
+                # Transforma a lista de tuplas em uma única string
+                letra_completa = '\n'.join(row[0] for row in letra)
+                
+                # Define a codificação correta para os caracteres
+                letra_completa = letra_completa.encode('latin-1').decode('utf-8')
+
+                # Exibe a letra completa
+                print(letra_completa)
+            else:
+                print("Nenhuma letra encontrada para essa mídia.")
+        except psycopg2.Error as e:
+            print("Erro ao buscar a letra:", e)
+        finally:
+            cursor.close()
+
         play(url_result[0][0])
         return audio_name
+
 
 def drop_all_tables(connect):
     print("\n---DROP DB---")
