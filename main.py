@@ -29,21 +29,20 @@ try:
 
         if choice == 1:
             simulate(con)
-            #play_media(con)
 
         if choice == 2:
 
             interface = """\n       ---OPERAÇÕES---
-            1.  CRUD
-            2.  Deletar todas as tabelas
-            3.  Criar todas as tabelas
-            4.  Inserir todos os valores
-            5.  Updates
-            6.  Deletes
-            7.  Update valor
-            8.  Delete valor
-            9.  Mostrar tabela
-            0.  Voltar\n """
+        1.  CRUD
+        2.  Deletar todas as tabelas
+        3.  Criar todas as tabelas
+        4.  Inserir todos os valores
+        5.  Updates
+        6.  Deletes
+        7.  Update valor
+        8.  Delete valor
+        9.  Mostrar tabela
+        0.  Voltar\n """
             print(interface)
 
             option = int(input("Opção: "))
@@ -84,10 +83,10 @@ try:
 
         if choice == 3:
             interface = """\n       ---CONSULTAS---
-            1.  Consulta 1
-            2.  Consulta 2
-            3.  Consulta 3
-            0.  Voltar\n """
+        1.  Consulta 1
+        2.  Consulta 2
+        3.  Consulta 3
+        0.  Voltar\n """
             print(interface)
 
             choice = int(input("Opção: "))

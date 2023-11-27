@@ -1,5 +1,5 @@
 
--- Deta músicas com restrição de plavra da plataforma -- TODO: ARRUMAR AQUI
+-- Deleta músicas com restrição de palavra da plataforma -- TODO: ARRUMAR AQUI
 DELETE FROM Genero_Musica WHERE id_midia = 1;
 ----
 DELETE FROM Musica WHERE letra LIKE '%jungle%';

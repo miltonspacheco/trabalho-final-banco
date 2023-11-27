@@ -10,15 +10,15 @@ nome varchar(50)
 CREATE TABLE Usuario (
 id_usuario SERIAL PRIMARY KEY,
 nome varchar(50),
-email varchar(50),
+email varchar(50) UNIQUE,
 senha varchar(50),
-cpf varchar(11)
+cpf varchar(11) UNIQUE
 );
 
 ----
 
 CREATE TABLE Assinatura (
-id_assinatura integer PRIMARY KEY,
+id_assinatura SERIAL PRIMARY KEY,
 data_inicio date,
 data_vencimento date,
 id_plano integer,
