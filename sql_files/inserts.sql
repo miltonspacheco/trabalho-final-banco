@@ -7,12 +7,12 @@ INSERT INTO Plano_Assinatura (id_plano, nome, beneficios, valor) VALUES
 
 ----
 --Inserção Usuario
-INSERT INTO Usuario (id_usuario, nome, email, senha, cpf) VALUES
-        (1, 'Milton Pacheco', 'miltondasp@gmail.com', 'senhamilton', '12345678910'),
-        (2, 'Joao Silva', 'joao@email.com', 'senhajoao', '12345678901'),
-        (3, 'Maria Souza', 'maria@email.com', 'senhamaria', '98765432109'),
-        (4, 'Pedro Oliveira', 'pedro@email.com', 'senhapedro', '45678912306'),
-        (5, 'Marina Santos', 'marinaa@gmail.com', 'senhamarina', '92732780465');
+INSERT INTO Usuario (nome, email, senha, cpf) VALUES
+        ('Milton Pacheco', 'miltondasp@gmail.com', 'senhamilton', '12345678910'),
+        ('Joao Silva', 'joao@email.com', 'senhajoao', '12345678901'),
+        ('Maria Souza', 'maria@email.com', 'senhamaria', '98765432109'),
+        ('Pedro Oliveira', 'pedro@email.com', 'senhapedro', '45678912306'),
+        ('Marina Santos', 'marinaa@gmail.com', 'senhamarina', '92732780465');
 
 
 ----

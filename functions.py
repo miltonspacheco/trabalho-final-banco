@@ -61,13 +61,11 @@ def play_media(connect):
         audio_name = input("\nDigite o nome da mídia escolhida: ")
         
         select_query = f"""
-            select mi.conteudo from midia as mi where mi.nome = %s
-            """
+        select mi.conteudo from midia as mi where mi.nome = %s
+        """
 
         cursor.execute(select_query, (audio_name, ))
         url_result = cursor.fetchall()
-
-        print("Para parar a reprodução basta usar o comando Ctrl + C")
 
         cursor.close()
         play(url_result[0][0])
@@ -407,7 +405,7 @@ def login(connect, email, senha):
 
 # Função para cadastrar um novo usuário
 def cadastrar_usuario(connect, nome, email, senha, cpf):
-    try:    
+    try:
         cursor = connect.cursor()
         query = "insert into usuario (nome, email, senha, cpf) values (%s, %s, %s, %s) returning id_usuario"
         cursor.execute(query, (nome, email, senha, cpf))
@@ -416,20 +414,22 @@ def cadastrar_usuario(connect, nome, email, senha, cpf):
     except psycopg2.Error as e:
         connect.rollback()
         print("Erro ao cadastrar o usuário:", e)
-    cursor.close()
+    finally:
+        cursor.close()
     return novo_id_usuario  # Retorna o ID do novo usuário cadastrado
-    
+   
 
-def editar_usuario(connect, email, senha, novo_email, nova_senha):
+def editar_usuario(connect, nome, email, senha, novo_nome, novo_email, nova_senha):
     try:
         cursor = connect.cursor()
-        query = "update Usuario set email = %s, senha = %s where email = %s and senha = %s"
-        cursor.execute(query, (novo_email, nova_senha, email, senha))
+        query = "update usuario set nome = %s, email = %s, senha = %s where nome= %s and email = %s and senha = %s"
+        cursor.execute(query, (novo_nome, novo_email, nova_senha, nome, email, senha))
         connect.commit()
     except psycopg2.Error as e:
         connect.rollback()
         print("Erro ao atualizar o usuário:", e)
-    cursor.close()
+    finally:
+        cursor.close()
     
 
 def show_message():
@@ -453,9 +453,9 @@ def user_welcome(connect):
 
         if usuario:
             id_usuario, nome = usuario
-            print(f"Usuário {nome} logado com sucesso!")
+            print(f"\nUsuário {nome} logado com sucesso!")
         else:
-            char = input("Usuário inválido. Deseja fazer o cadastro? (S)im / (N)ão: ")
+            char = input("\nUsuário inválido. Deseja fazer o cadastro? (S)im / (N)ão: ")
             if char.upper() == 'N':
                 return
 
@@ -468,13 +468,13 @@ def user_welcome(connect):
         try:
             novo_id = cadastrar_usuario(connect, user, email, senha, cpf)
             if novo_id:
-                print(f"Novo usuário cadastrado com o id {novo_id}!")
+                print(f"\nNovo usuário cadastrado com o id {novo_id}!")
         except:
             return
     return email, senha
 
-def insert_reproducao(connect, email, midia):
 
+def insert_reproducao(connect, email, midia):
     data_atual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     cursor = connect.cursor()
@@ -494,7 +494,6 @@ def insert_reproducao(connect, email, midia):
     print ('Reproducao Inserida')
 
 
-
 def user_options(connect, email, senha):
     power_up = 1
     while power_up == 1:
@@ -510,19 +509,31 @@ def user_options(connect, email, senha):
             insert_reproducao(connect, email, media)
         elif choice == 2:
             print("\nSelecione uma opção:")
-            print("1 - Alterar email")
-            print("2 - Alterar senha")
+            print("1 - Alterar nome de usuário")
+            print("2 - Alterar email")
+            print("3 - Alterar senha")
             alt = int(input("Opção: "))
 
+            cursor = connect.cursor()
+            query = 'select u.nome from usuario as u where u.email = %s'
+            cursor.execute(query, (email, ))
+            nome = cursor.fetchone()[0]
+
             if alt == 1:
+                novo_nome = input("Digite o novo nome de usuário: ")
+                novo_email = email
+                nova_senha = senha
+            elif alt == 2:
                 novo_email = input("Digite o novo email: ")
+                novo_nome = nome
                 nova_senha = senha
             else:
                 nova_senha = input("Digite a nova senha: ")
+                novo_nome = nome
                 novo_email = email
 
-            editar_usuario(connect, email, senha, novo_email, nova_senha)
-            print("\nUsuário alterado com sucesso") #TODO: o usuario nao esta sendo alterado
+            editar_usuario(connect, nome, email, senha, novo_nome, novo_email, nova_senha)
+            print("\nUsuário alterado com sucesso") 
         else:
             print("Até a próxima!")
             break
