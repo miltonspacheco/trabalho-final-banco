@@ -12,7 +12,11 @@ def play(file_path):
     # Play the audio using simpleaudio
     play_obj = sa.play_buffer(audio_data, num_channels=audio.channels, bytes_per_sample=audio.sample_width, sample_rate=audio.frame_rate)
 
-    # Wait for playback to finish
-    play_obj.wait_done()
-
-    # To stop the audio, use Ctrl + C
+    power_up = 1
+    while power_up == 1:
+        code = int(input("Digite 1 para parar a musica: ")) 
+        if code == 1:
+            play_obj.stop()
+            power_up = 0
+        else:
+            continue
