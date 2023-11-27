@@ -71,7 +71,7 @@ def play_media(connect):
 
         cursor.close()
         play(url_result[0][0])
-
+        return audio_name
 
 def drop_all_tables(connect):
     print("\n---DROP DB---")
@@ -424,7 +424,7 @@ def editar_usuario(connect, email, senha, novo_email, nova_senha):
     try:
         cursor = connect.cursor()
         query = "update Usuario set email = %s, senha = %s where email = %s and senha = %s"
-        cursor.execute(query, (email, senha, novo_email, nova_senha))
+        cursor.execute(query, (novo_email, nova_senha, email, senha))
         connect.commit()
     except psycopg2.Error as e:
         connect.rollback()
@@ -473,6 +473,27 @@ def user_welcome(connect):
             return
     return email, senha
 
+def insert_reproducao(connect, email, midia):
+
+    data_atual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    cursor = connect.cursor()
+
+    query = 'select usuario.id_usuario from usuario where usuario.email = %s'
+    cursor.execute(query, (email, ))
+    id_user = cursor.fetchone()[0]
+
+    query = 'select midia.id_midia from midia where midia.nome = %s'
+    cursor.execute(query, (midia, ))
+    id_midia = cursor.fetchone()[0]
+    
+    query = "insert into reproducao (data_reproducao, id_midia, id_usuario) values (%s, %s, %s)"
+    cursor.execute(query, (data_atual, id_midia , id_user))
+    connect.commit() 
+    cursor.close()
+    print ('Reproducao Inserida')
+
+
 
 def user_options(connect, email, senha):
     power_up = 1
@@ -485,7 +506,8 @@ def user_options(connect, email, senha):
         choice = int(input("Opção: "))
 
         if choice == 1:
-            play_media(connect) 
+            media = play_media(connect) 
+            insert_reproducao(connect, email, media)
         elif choice == 2:
             print("\nSelecione uma opção:")
             print("1 - Alterar email")
