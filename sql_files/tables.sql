@@ -18,7 +18,7 @@ cpf varchar(11) UNIQUE
 ----
 
 CREATE TABLE Assinatura (
-id_assinatura integer PRIMARY KEY,
+id_assinatura SERIAL PRIMARY KEY,
 data_inicio date,
 data_vencimento date,
 id_plano integer,

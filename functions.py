@@ -406,10 +406,16 @@ def login(connect, email, senha):
 # Função para cadastrar um novo usuário
 def cadastrar_usuario(connect, nome, email, senha, cpf):
     try:
+        data_atual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
         cursor = connect.cursor()
         query = "insert into usuario (nome, email, senha, cpf) values (%s, %s, %s, %s) returning id_usuario"
         cursor.execute(query, (nome, email, senha, cpf))
         novo_id_usuario = cursor.fetchone()[0]
+        
+        query = "insert into assinatura (id_usuario, id_plano, data_inicio, data_vencimento) values (%s, %s, %s, %s)"
+        cursor.execute(query, (novo_id_usuario, 1, data_atual, None))
+
         connect.commit()
     except psycopg2.Error as e:
         connect.rollback()
@@ -469,6 +475,7 @@ def user_welcome(connect):
             novo_id = cadastrar_usuario(connect, user, email, senha, cpf)
             if novo_id:
                 print(f"\nNovo usuário cadastrado com o id {novo_id}!")
+                print("Plano de assinatura atual: Standard")
         except:
             return
     return email, senha
@@ -535,7 +542,7 @@ def user_options(connect, email, senha):
             editar_usuario(connect, nome, email, senha, novo_nome, novo_email, nova_senha)
             print("\nUsuário alterado com sucesso") 
         else:
-            print("Até a próxima!")
+            print("\nAté a próxima!")
             break
 
 

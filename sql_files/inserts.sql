@@ -17,10 +17,13 @@ INSERT INTO Usuario (nome, email, senha, cpf) VALUES
 
 ----
 --Inserção Assinaturas
-INSERT INTO Assinatura (id_assinatura, id_usuario, id_plano, data_inicio, data_vencimento) VALUES
-        (1, 1, 1, '2023-01-01', '2024-01-01'),
-        (2, 2, 2, '2023-01-01', '2024-01-01'),
-        (3, 1, 3, '2023-01-01', '2023-01-01');
+INSERT INTO Assinatura (id_usuario, id_plano, data_inicio, data_vencimento) VALUES
+        (1, 1, '2023-01-01', null),
+        (2, 2, '2023-01-01', '2024-01-01'),
+        (1, 3, '2023-01-01', '2024-01-01'),
+        (3, 1, '2023-01-01', null),
+        (4, 1, '2023-01-01', null),
+        (5, 1, '2023-01-01', null);
 
 
 ----
