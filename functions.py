@@ -465,11 +465,12 @@ def user_welcome(connect):
         senha = input("Digite uma senha: ")
         cpf = input("Digite seu cpf: ")
 
-        novo_id = cadastrar_usuario(connect, user, email, senha, cpf)
-
-        if novo_id:
-            print(f"Novo usuário cadastrado com o id {novo_id}!")
-
+        try:
+            novo_id = cadastrar_usuario(connect, user, email, senha, cpf)
+            if novo_id:
+                print(f"Novo usuário cadastrado com o id {novo_id}!")
+        except:
+            return
     return email, senha
 
 
