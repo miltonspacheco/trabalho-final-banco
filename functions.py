@@ -71,17 +71,19 @@ def play_media(connect):
             
             if letra:
                 # Transforma a lista de tuplas em uma única string
-                letra_completa = '\n'.join(row[0] for row in letra)
+                letra = '\n'.join(row[0] for row in letra)
                 
                 # Define a codificação correta para os caracteres
-                letra_completa = letra_completa.encode('latin-1').decode('utf-8')
+                letra = letra.encode('latin-1').decode('utf-8')
 
                 # Exibe a letra completa
-                print(letra_completa)
+                print(letra)
             else:
                 print("Nenhuma letra encontrada para essa mídia.")
+
         except psycopg2.Error as e:
             print("Erro ao buscar a letra:", e)
+            
         finally:
             cursor.close()
 
@@ -532,6 +534,7 @@ def user_options(connect, email, senha):
         if choice == 1:
             media = play_media(connect) 
             insert_reproducao(connect, email, media)
+            update_streamings(connect)
         elif choice == 2:
             print("\nSelecione uma opção:")
             print("1 - Alterar nome de usuário")
