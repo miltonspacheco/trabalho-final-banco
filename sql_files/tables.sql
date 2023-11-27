@@ -12,7 +12,7 @@ id_usuario SERIAL PRIMARY KEY,
 nome varchar(50),
 email varchar(50) UNIQUE,
 senha varchar(50),
-cpf varchar(11)
+cpf varchar(11) UNIQUE
 );
 
 ----

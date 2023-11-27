@@ -434,8 +434,8 @@ def editar_usuario(connect, nome, email, senha, novo_nome, novo_email, nova_senh
 
 def show_message():
     print("\n--- SIMULAÇÃO ---")
-    print("\nBem-vindo(a) à plataforma de streaming DebMil!")
-    print("Selecione uma opção:")
+    print("Bem-vindo(a) à plataforma de streaming DebMil!")
+    print("\nSelecione uma opção:")
     print("1 - Cadastro")
     print("2 - Login")
 

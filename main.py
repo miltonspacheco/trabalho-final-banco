@@ -29,7 +29,6 @@ try:
 
         if choice == 1:
             simulate(con)
-            #play_media(con)
 
         if choice == 2:
 
