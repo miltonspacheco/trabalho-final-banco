@@ -424,7 +424,7 @@ def editar_usuario(connect, email, senha, novo_email, nova_senha):
     try:
         cursor = connect.cursor()
         query = "update Usuario set email = %s, senha = %s where email = %s and senha = %s"
-        cursor.execute(query, (email, senha, novo_email, nova_senha))
+        cursor.execute(query, (novo_email, nova_senha, email, senha))
         connect.commit()
     except psycopg2.Error as e:
         connect.rollback()
