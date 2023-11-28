@@ -23,7 +23,7 @@ try:
         if choice == 0:
             if not con.closed:
                 exit_db(con)
-                break
+                break 
             else:
                 break
 
