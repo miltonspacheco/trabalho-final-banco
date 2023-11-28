@@ -14,7 +14,7 @@ def play(file_path):
 
     power_up = 1
     while power_up == 1:
-        code = int(input("Digite 1 para parar a musica: ")) 
+        code = int(input("\nDigite 1 para parar a reprodução: ")) 
         if code == 1:
             play_obj.stop()
             power_up = 0

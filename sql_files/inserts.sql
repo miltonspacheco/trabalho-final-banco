@@ -144,7 +144,7 @@ INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, con
         (22, 'ANDERSON SILVA - Flow Podcast', '03:37:43', 0, '2023-11-15', 'media/podcast/Anderson_Silva_FlowPodcast.mp3'),
         (23, 'CLOVIS DE BARROS FILHO - Flow Podcast', '02:17:51', 0, '2023-10-10', 'media/podcast/CLOVIS_DE_BARROS_FILHO_FlowPodcast.mp3'),
         (24, 'TAIS ARAUJO - Podpah', '01:56:16', 0, '2023-03-20', 'media/podcast/TAIS_ARAUJO_Podpah.mp3'),
-        (25, 'ANDRIANO IMPERADOR - Podpah', '01:21:13', 0, '2023-07-14', 'media/podcast/Anderson_Silva_FlowPodcast.mp3');
+        (25, 'ADRIANO IMPERADOR - Podpah', '01:21:13', 0, '2023-07-14', 'media/podcast/ADRIANO_IMPERADOR_Podpah.mp3');
 
 
 ----
