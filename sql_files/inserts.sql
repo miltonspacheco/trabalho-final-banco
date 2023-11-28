@@ -51,8 +51,7 @@ INSERT INTO Assinatura (id_usuario, id_plano, data_inicio, data_vencimento) VALU
         (16, 1, '2023-07-01', null),
         (17, 1, '2023-07-01', null),
         (18, 1, '2023-07-01', null),
-        (19, 1, '2023-07-01', null),
-        (20, 1, '2023-07-01', null);
+        (19, 1, '2023-07-01', null);
 
 
 ----
@@ -84,7 +83,8 @@ INSERT INTO Artista (id_artista, nome, tipo) VALUES
         (11, 'Pixote', 'Banda'),
         (12, 'Marina Sena', 'Solo'),
         (13, 'Eminem', 'Solo'),
-        (14, 'Pantera', 'Banda');
+        (14, 'Pantera', 'Banda'),
+        (15, 'Coldplay', 'Banda');
 
 
 ---- 
@@ -103,7 +103,9 @@ INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
         (11, 'Disco', 'Pixote no Estúdio Showlivre, Vol. 3', 2007, 11),
         (12, 'Single', 'Ombrim', 2023, 12),
         (13, 'Disco', 'The Marshall Mathers LP 2', 2013, 13),
-        (14, 'Disco', 'Vulgar Display of Power', 1992, 14);
+        (14, 'Disco', 'Vulgar Display of Power', 1992, 14),
+        (15, 'Disco', 'Parachutes', 2000, 15),
+        (16, 'Disco', 'X&Y', 2005, 15);
 
 
 ---- 
@@ -126,12 +128,23 @@ INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, con
         (14, 'Rap God', '06:03', 0, '2013-10-15', 'media/music/Rap_God.mp3'),
         (15, 'Todo Mundo Vai Sofrer', '03:02', 0, '2019-06-28', 'media/music/Todo_Mundo_Vai_Sofrer.mp3'),
         (16, 'Walk', '05:15', 0, '1994-08-23', 'media/music/Walk.mp3'),
+        (26, 'Firework', '03:38', 0, '2010-10-28', 'media/music/Firework.mp3'),
+        (27, 'Fix You', '04:55', 0, '2005-09-05', 'media/music/Fix_You.mp3'),
+        (28, 'Hells Bells', '05:09', 0, '1980-06-25', 'media/music/Hells_Bells.mp3'),
+        (29, 'Nightrain', '04:28', 0, '1988-11-30', 'media/music/Nightrain.mp3'),
+        (30, 'Save Your Tears', '03:36', 0, '2020-08-09', 'media/music/Save_Your_Tears.mp3'),
+        (31, 'Shoot To Thrill', '05:20', 0, '1980-01-26', 'media/music/Shoot_To_Thrill.mp3'),
+        (32, 'Yellow', '04:28', 0, '2000-06-26', 'media/music/Yellow.mp3'),
 --Inserção Podcast
         (17, 'MANO BROWN - Podpah', '02:53:58', 0, '2022-03-07', 'media/music/MANO_BROWN_Podpah.mp3'),
         (18, 'LULA - Podpah', '02:36:20', 0, '2021-12-02', 'media/podcast/LULA_Podpah.mp3'),
         (19, 'Web3 vale o hype? - Hipsters Ponto Tech', '04:34', 0, '2023-10-24', 'media/podcast/Web3_vale_o_hype.mp3'),
         (20, 'Loki 2: O glorioso propósito do deus da trapaça - NerdCast', '04:34', 0, '2023-11-17', 'media/podcast/nerdcast_908_loki_2.mp3'),
-        (21, 'SPACE TODAY - Flow Podcast', '02:17:51', 0, '2020-10-21', 'media/podcast/SPACE_TODAY_FlowPodcast.mp3');
+        (21, 'SPACE TODAY - Flow Podcast', '02:17:51', 0, '2020-10-21', 'media/podcast/SPACE_TODAY_FlowPodcast.mp3'),
+        (22, 'ANDERSON SILVA - Flow Podcast', '03:37:43', 0, '2023-11-15', 'media/podcast/Anderson_Silva_FlowPodcast.mp3'),
+        (23, 'CLOVIS DE BARROS FILHO - Flow Podcast', '02:17:51', 0, '2023-10-10', 'media/podcast/CLOVIS_DE_BARROS_FILHO_FlowPodcast.mp3'),
+        (24, 'TAIS ARAUJO - Podpah', '01:56:16', 0, '2023-03-20', 'media/podcast/TAIS_ARAUJO_Podpah.mp3'),
+        (25, 'ANDRIANO IMPERADOR - Podpah', '01:21:13', 0, '2023-07-14', 'media/podcast/Anderson_Silva_FlowPodcast.mp3');
 
 
 ----
@@ -151,7 +164,7 @@ INSERT INTO Reproducao (id_midia, id_usuario, data_reproducao) VALUES
         (12, 2, '2023-05-20 15:45:00'),
         (10, 5, '2023-06-10 18:20:00'),
         (3, 3, '2023-07-05 12:00:00'),
-        (6, 20, '2023-08-08 08:00:00'),
+        (6, 19, '2023-08-08 08:00:00'),
         (4, 9, '2023-09-30 10:30:00'),
         (2, 2, '2023-11-10 15:45:00'),
         (14, 5, '2023-12-05 18:20:00'),
@@ -178,7 +191,7 @@ INSERT INTO Reproducao (id_midia, id_usuario, data_reproducao) VALUES
         (3, 2, '2023-07-05 12:00:00'),
         (6, 3, '2023-08-08 08:00:00'),
         (4, 7, '2023-09-30 10:30:00'),
-        (21, 3, '2023-12-10 20:00:00');
+        (21, 3, '2023-12-10 20:00:00'),
         (2, 5, '2023-11-10 15:45:00'),
         (14, 1, '2023-12-05 18:20:00'),
         (10, 2, '2023-11-18 12:00:00'),
@@ -191,7 +204,7 @@ INSERT INTO Reproducao (id_midia, id_usuario, data_reproducao) VALUES
         (7, 5, '2023-11-15 21:30:00'),
         (8, 2, '2023-12-10 22:00:00'),
         (9, 10, '2023-11-25 22:30:00'),
-        (20, 19, '2023-12-20 20:00:00');
+        (20, 19, '2023-12-20 20:00:00'),
         (10, 9, '2023-12-30 23:00:00'),
         (11, 8, '2023-10-08 23:30:00'),
         (14, 2, '2023-11-07 18:15:00'),
@@ -1193,7 +1206,308 @@ INSERT INTO Musica (id_midia, id_album, letra) VALUES
                 Respect, walk, what did you say?
                 Respect, walk
                 Are you talkin'' to me? Are you talkin'' to me?
-                Walk on home, boy');
+                Walk on home, boy'),
+        (26, 8, 'Do you ever feel like a plastic bag
+                Drifting through the wind, wanting to start again?
+                Do you ever feel, feel so paper thin
+                Like a house of cards, one blow from cavin'' in?
+                Do you ever feel already buried deep?
+                Six feet under screams, but no one seems to hear a thing
+                Do you know that there''s still a chance for you?
+                ''Cause there''s a spark in you
+                You just gotta ignite the light
+                And let it shine
+                Just own the night
+                Like the Fourth of July
+                ''Cause baby, you''re a firework
+                Come on, show ''em what you''re worth
+                Make ''em go, "Oh, oh, oh"
+                As you shoot across the sky
+                Baby, you''re a firework
+                Come on, let your colors burst
+                Make ''em go, "Oh, oh, oh"
+                You''re gonna leave ''em all in awe, awe, awe
+                You don''t have to feel like a waste of space
+                You''re original, cannot be replaced
+                If you only knew what the future holds
+                After a hurricane comes a rainbow
+                Maybe a reason why all the doors are closed
+                So you could open one that leads you to the perfect road
+                Like a lightning bolt, your heart will glow
+                And when it''s time, you''ll know
+                You just gotta ignite the light
+                And let it shine
+                Just own the night
+                Like the Fourth of July
+                ''Cause baby, you''re a firework
+                Come on, show ''em what you''re worth
+                Make ''em go, "Oh, oh, oh"
+                As you shoot across the sky
+                Baby, you''re a firework
+                Come on, let your colors burst
+                Make ''em go, "Oh, oh, oh"
+                You''re gonna leave ''em all in awe, awe, awe
+                Boom, boom, boom
+                Even brighter than the moon, moon, moon
+                It''s always been inside of you, you, you
+                And now it''s time to let it through
+                ''Cause baby, you''re a firework
+                Come on, show ''em what you''re worth
+                Make ''em go, "Oh, oh, oh"
+                As you shoot across the sky
+                Baby, you''re a firework
+                Come on, let your colors burst
+                Make ''em go, "Oh, oh, oh"
+                You''re gonna leave ''em all in awe, awe, awe
+                Boom, boom, boom
+                Even brighter than the moon, moon, moon
+                Boom, boom, boom
+                Even brighter than the moon, moon, moon'),
+        (27, 16, 'When you try your best, but you don''t succeed
+                When you get what you want, but not what you need
+                When you feel so tired, but you can''t sleep
+                Stuck in reverse
+                And the tears come streaming down your face
+                When you lose something you can''t replace
+                When you love someone, but it goes to waste
+                Could it be worse?
+                Lights will guide you home
+                And ignite your bones
+                And I will try to fix you
+                And high up above, or down below
+                When you''re too in love to let it go
+                But if you never try, you''ll never know
+                Just what you''re worth
+                Lights will guide you home
+                And ignite your bones
+                And I will try to fix you
+                Tears stream down your face
+                When you lose something you cannot replace
+                Tears stream down your face, and I
+                Tears stream down your face
+                I promise you I will learn from my mistakes
+                Tears stream down your face, and I
+                Lights will guide you home
+                And ignite your bones
+                And I will try to fix you'),
+        (28, 2, 'I''m rolling thunder, pouring rain
+                I''m coming on like a hurricane
+                My lightning''s flashing across the sky
+                You''re only young, but you''re gonna die
+                I won''t take no prisoners, won''t spare no lives
+                Nobody''s putting up a fight
+                I got my bell, I''m gonna take you to hell
+                I''m gonna get ya, Satan get ya
+                Hells bells
+                Hells bells, you got me ringing
+                Hells bells, my temperature''s high
+                Hells bells
+                I''ll give you black sensations up and down your spine
+                If you''re into evil, you''re a friend of mine
+                See the white light flashing as I split the night
+                Cos if good''s on the left then I''m sticking to the right
+                I won''t take no prisoners, won''t spare no lives
+                Nobody''s puttin'' up a fight
+                I got my bell, I''m gonna take you to hell
+                I''m gonna get ya, Satan get ya
+                Hells bells
+                Hells bells, you got me ringing
+                Hells bells, my temperature''s high
+                Hells bells
+                Hells bells, Satan''s coming to you
+                Hells bells, he''s ringing them now
+                Those hells bells, the temperature''s high
+                Hells bells, across the sky
+                Hells bells, they''re taking you down
+                Hells bells, they''re dragging you down
+                Hells bells, gonna split the night
+                Hells bells, there''s no way to fight
+                Hells bells'),
+        (29, 1, 'Loaded like a freight train
+                Flyin'' like an aeroplane
+                Feelin'' like a space brain
+                One more time tonight (look out)
+                Well, I''m a west coast struttin''
+                One bad mother
+                Got a rattlesnake suitcase under my arm
+                Said I''m a mean machine
+                Been drinkin'' gasoline
+                And honey you can make my motor hum
+                I got one chance left
+                In a nine live cat
+                I got a dog eat dog sly smile
+                I got a molotov cocktail with a match to go
+                I smoke my cigarette with style
+                And I can tell you honey
+                You can make my money tonight
+                Wake up late, honey put on your clothes
+                And take your credit card to the liquor store
+                Well that''s one for you and two for me by tonight
+                I''ll be loaded like a freight train
+                Flyin'' like an aeroplane
+                Feelin'' like a space brain
+                One more time tonight
+                I''m on the night train, bottoms up
+                I''m on the night train, fill my cup
+                I''m on the night train, ready to crash and burn
+                I never learn
+                I''m on the night train, I love that stuff
+                I''m on the night train, and I can never get enough
+                I''m on the night train, never to return, no
+                Loaded like a freight train
+                Flyin'' like an aeroplane
+                Speedin'' like a space brain
+                One more time tonight
+                I''m on the night train
+                And I''m lookin'' for some
+                I''m on the night train
+                So''s I can leave this slum
+                I''m on the night train
+                And I''m ready to crash and burn
+                Night train, bottoms up
+                I''m on the night train, fill my cup
+                I''m on the night train
+                Oh oh oh ohh oh yeah
+                I''m on the night train
+                Love that stuff
+                Ooh I''m on the night train
+                And I can never get enough
+                Ridin'' the night train
+                I guess I
+                I guess, I guess, I guess
+                I never learn
+                On the night train
+                Float me home
+                Ooh, I''m on the night train
+                Ridin'' the night train
+                Never to return
+                Night train'),
+        (30, 4, 'Ooh
+                Na-na, yeah
+                I saw you dancing in a crowded room
+                You look so happy when I''m not with you
+                But then you saw me, caught you by surprise
+                A single teardrop falling from your eye
+                I don''t know why I run away
+                I''ll make you cry when I run away
+                You could''ve asked me why I broke your heart
+                You could''ve told me that you fell apart
+                But you walked past me like I wasn''t there
+                And just pretended like you didn''t care
+                I don''t know why I run away
+                I''ll make you cry when I run away
+                Take me back ''cause I wanna stay
+                Save your tears for another
+                Save your tears for another day
+                Save your tears for another day
+                So, I made you think that I would always stay
+                I said some things that I should never say
+                Yeah, I broke your heart like someone did to mine
+                And now you won''t love me for a second time
+                I don''t know why I run away, oh, girl
+                Said I''ll make you cry when I run away
+                Girl, take me back ''cause I wanna stay
+                Save your tears for another
+                I realize that I''m much too late
+                And you deserve someone better
+                Save your tears for another day (ooh, yeah)
+                Save your tears for another day (yeah)
+                I don''t know why I run away
+                I''ll make you cry when I run away
+                Save your tears for another day, ooh, girl (ah)
+                I said save your tears for another day (ah)
+                Save your tears for another day (ah)
+                Save your tears for another day (ah)'),
+        (31, 2, 'All you women who want a man of the street
+                But don''t know which way you wanna turn
+                Just keep a-comin'', and put your hand out to me
+                ''Cause I''m the one who''s gonna make you burn
+                I''m gonna take you down
+                Oh, down, down, down
+                So, don''t you fool around
+                I''m gonna pull it, pull it, pull the trigger
+                Shoot to thrill, play to kill
+                Too many women with too many pills, yeah
+                Shoot to thrill, play to kill
+                I got my gun at the ready, gonna fire at will, yeah
+                I''m like evil, I get under your skin
+                Just like a bomb that''s ready to blow
+                ''Cause I''m illegal, I got everything
+                That all you women might need to know
+                I''m gonna take you down
+                Yeah, down, down, down
+                So, don''t you fool around
+                I''m gonna pull it, pull it, pull the trigger
+                Shoot to thrill, play to kill
+                Too many women with too many pills, said
+                Shoot to thrill, play to kill
+                I got my gun at the ready, gonna fire at will
+                ''Cause I shoot to thrill, and I''m ready to kill
+                I can''t get enough and I can''t get my fill
+                I shoot to thrill, play to kill
+                Yeah
+                Pull the trigger, pull it
+                Pull it, pull it, pull the trigger!
+                Oh
+                Shoot to thrill, play to kill
+                Too many women with too many pills, I said
+                Shoot to thrill, play to kill
+                I got my gun at the ready, going to fire at will
+                ''Cause I shoot to thrill and I''m ready to kill
+                And I can''t get enough and I can''t get my fill
+                ''Cause I shoot to thrill, play to kill
+                Yeah
+                Shoot you down, yeah
+                I''m gonna get you down to the bottom, girl
+                Shoot you, I''m gonna shoot you
+                Ooh, yeah
+                Yeah, yeah
+                I''m gonna shoot you down, yeah, yeah
+                I''m gonna get you down
+                Down, down, down, down
+                Shoot you, shoot you, shoot you, shoot you down
+                Shoot you, shoot you, shoot you down
+                Aah, aah, aah, aah, aah, aah yeah
+                I''m gonna shoot to thrill
+                Play to kill
+                Shoot to thrill'),
+        (32, 15, 'Look at the stars
+                Look how they shine for you
+                And everything you do
+                Yeah, they were all yellow
+                I came along
+                I wrote a song for you
+                And all the things you do
+                And it was called Yellow
+                So then I took my turn
+                Oh, what a thing to have done
+                And it was all yellow
+                Your skin, oh yeah, your skin and bones
+                Turn into something beautiful
+                And you know, you know I love you so
+                You know I love you so
+                I swam across
+                I jumped across for you
+                Oh, what a thing to do
+                ''Cause you were all yellow
+                I drew a line
+                I drew a line for you
+                Oh, what a thing to do
+                And it was all yellow
+                And your skin, oh yeah, your skin and bones
+                Turn into something beautiful
+                And you know, for you, I''d bleed myself dry
+                For you, I''d bleed myself dry
+                It''s true
+                Look how they shine for you
+                Look how they shine for you
+                Look how they shine for
+                Look how they shine for you
+                Look how they shine for you
+                Look how they shine
+                Look at the stars
+                Look how they shine for you
+                And all the things that you do');
 
 
 ---- 
@@ -1228,7 +1542,14 @@ INSERT INTO Genero_Musica (id_midia, id_genero) VALUES
     (13, 3), -- Ombrim - Marina Sena - Funk
     (14, 8), -- Rap God - Eminem - Rap
     (15, 3), -- Todo Mundo Vai Sofrer - MC Kekel - Funk
-    (16, 6); -- Walk - Pantera - Metal
+    (16, 6), -- Walk - Pantera - Metal
+    (26, 2), -- Firework - Coldplay - Pop
+    (27, 2), -- Fix You - Coldplay - Pop
+    (28, 1), -- Hells Bells - AC/DC - Rock
+    (29, 1), -- Nightrain - Guns n Roses - Rock
+    (30, 2), -- Save Your Tears - The Wekend - Pop
+    (31, 1), -- Shoot To Thrill - AC/DC - Rock
+    (32, 2); -- Yellow - Coldplay - Pop
 
 
 ---- 
@@ -1247,7 +1568,11 @@ INSERT INTO Podcast (id_midia, id_podcaster) VALUES
         (18, 1),
         (19, 2),
         (20, 3),
-        (21, 4);
+        (21, 4),
+        (22, 4),
+        (23, 4),
+        (24, 1),
+        (25, 1);
 
 
 ---- 
@@ -1268,6 +1593,10 @@ INSERT INTO Podcast_Tema (id_midia, id_tema) VALUES
         (18, 6),
         (19, 2),
         (20, 3),
-        (21, 6);        
+        (21, 6),    
+        (22, 6),        
+        (23, 6),        
+        (24, 6),        
+        (25, 6);        
 
 
