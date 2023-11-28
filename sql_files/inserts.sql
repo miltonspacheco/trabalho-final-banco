@@ -100,7 +100,7 @@ INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
         (8, 'Disco', 'Teenage Dream', 2010, 8),
         (9, 'Disco', 'Master of Puppets', 1986, 9),
         (10, 'Single', 'Namorar pra Que?', 2016, 10),
-        (11, 'Disco', 'Pixote no Estúdio Showlivre, Vol. 3', 2007, 11),
+        (11, 'Disco', 'Pixote no Estudio Showlivre, Vol. 3', 2007, 11),
         (12, 'Single', 'Ombrim', 2023, 12),
         (13, 'Disco', 'The Marshall Mathers LP 2', 2013, 13),
         (14, 'Disco', 'Vulgar Display of Power', 1992, 14),
@@ -144,7 +144,7 @@ INSERT INTO Midia (id_midia, nome, duracao, qtd_streamings, data_lancamento, con
         (22, 'ANDERSON SILVA - Flow Podcast', '03:37:43', 0, '2023-11-15', 'media/podcast/Anderson_Silva_FlowPodcast.mp3'),
         (23, 'CLOVIS DE BARROS FILHO - Flow Podcast', '02:17:51', 0, '2023-10-10', 'media/podcast/CLOVIS_DE_BARROS_FILHO_FlowPodcast.mp3'),
         (24, 'TAIS ARAUJO - Podpah', '01:56:16', 0, '2023-03-20', 'media/podcast/TAIS_ARAUJO_Podpah.mp3'),
-        (25, 'ANDRIANO IMPERADOR - Podpah', '01:21:13', 0, '2023-07-14', 'media/podcast/Anderson_Silva_FlowPodcast.mp3');
+        (25, 'ADRIANO IMPERADOR - Podpah', '01:21:13', 0, '2023-07-14', 'media/podcast/ADRIANO_IMPERADOR_Podpah.mp3');
 
 
 ----
@@ -1583,7 +1583,8 @@ INSERT INTO Tema (id_tema, descricao) VALUES
         (3, 'Geek'),
         (4, 'Jornalistico'),
         (5, 'RPG'),
-        (6, 'Entrevista');
+        (6, 'Entrevista'),
+        (7, 'MesaCast');
 
 
 ----
