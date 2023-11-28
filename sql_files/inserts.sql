@@ -7,26 +7,26 @@ INSERT INTO Plano_Assinatura (id_plano, nome, beneficios, valor) VALUES
 
 ----
 --Inserção Usuario
-INSERT INTO Usuario (id_usuario, nome, email, senha, cpf) VALUES
-        (1, 'Milton Pacheco', 'miltondasp@gmail.com', 'senhamilton', '12345678910'),
-        (2, 'Joao Silva', 'joao@email.com', 'senhajoao', '12345678901'),
-        (3, 'Maria Souza', 'maria@email.com', 'senhamaria', '98765432109'),
-        (4, 'Pedro Oliveira', 'pedro@email.com', 'senhapedro', '45678912306'),
-        (5, 'Marina Santos', 'marinaa@gmail.com', 'senhamarina', '92732780465'),
-        (6, 'Ana Pereira', 'ana@email.com', 'senhaana', '78901234567'),
-        (7, 'Rafael Mendes', 'rafael@email.com', 'senharafael', '54321678901'),
-        (8, 'Camila Fernandes', 'camila@email.com', 'senhacamila', '45678901234'),
-        (9, 'Lucas Almeida', 'lucas@email.com', 'senhalucas', '98765432100'),
-        (10, 'Julia Costa', 'julia@email.com', 'senhajulia', '12345098765'),
-        (11, 'Carlos Garcia', 'carlos@email.com', 'senhacarlos', '12345678902'),
-        (12, 'Fernanda Castro', 'fernanda@email.com', 'senhafernanda', '98765432110'),
-        (13, 'Luiz Gomes', 'luiz@email.com', 'senhaluiz', '45678912307'),
-        (14, 'Ana Paula', 'anapaula@email.com', 'senhaanapaula', '92732780466'),
-        (15, 'Guilherme Santos', 'guilherme@email.com', 'senhaguilherme', '78901234568'),
-        (16, 'Caio Pereira', 'caio@email.com', 'senhacaio', '54321678902'),
-        (17, 'Beatriz Fernandes', 'beatriz@email.com', 'senhabeatriz', '45678901235'),
-        (18, 'Gabriel Almeida', 'gabriel@email.com', 'senhagabriel', '98765432101'),
-        (19, 'Laura Costa', 'laura@email.com', 'senhalaura', '12345098766');
+INSERT INTO Usuario (nome, email, senha, cpf) VALUES
+        ('Milton Pacheco', 'miltondasp@gmail.com', 'senhamilton', '12345678910'),
+        ('Joao Silva', 'joao@email.com', 'senhajoao', '12345678901'),
+        ('Maria Souza', 'maria@email.com', 'senhamaria', '98765432109'),
+        ('Pedro Oliveira', 'pedro@email.com', 'senhapedro', '45678912306'),
+        ('Marina Santos', 'marinaa@gmail.com', 'senhamarina', '92732780465'),
+        ('Ana Pereira', 'ana@email.com', 'senhaana', '78901234567'),
+        ('Rafael Mendes', 'rafael@email.com', 'senharafael', '54321678901'),
+        ('Camila Fernandes', 'camila@email.com', 'senhacamila', '45678901234'),
+        ('Lucas Almeida', 'lucas@email.com', 'senhalucas', '98765432100'),
+        ('Julia Costa', 'julia@email.com', 'senhajulia', '12345098765'),
+        ('Carlos Garcia', 'carlos@email.com', 'senhacarlos', '12345678902'),
+        ('Fernanda Castro', 'fernanda@email.com', 'senhafernanda', '98765432110'),
+        ('Luiz Gomes', 'luiz@email.com', 'senhaluiz', '45678912307'),
+        ('Ana Paula', 'anapaula@email.com', 'senhaanapaula', '92732780466'),
+        ('Guilherme Santos', 'guilherme@email.com', 'senhaguilherme', '78901234568'),
+        ('Caio Pereira', 'caio@email.com', 'senhacaio', '54321678902'),
+        ('Beatriz Fernandes', 'beatriz@email.com', 'senhabeatriz', '45678901235'),
+        ('Gabriel Almeida', 'gabriel@email.com', 'senhagabriel', '98765432101'),
+        ('Laura Costa', 'laura@email.com', 'senhalaura', '12345098766');
 
 
 ----
