@@ -533,11 +533,12 @@ def user_options(connect, email, senha):
         print("2 - Editar perfil")
         print("3 - Sair")
         choice = int(input("Opção: "))
-
+        
         if choice == 1:
             media = play_media(connect) 
             insert_reproducao(connect, email, media)
             update_streamings(connect)
+            
         elif choice == 2:
             print("\nSelecione uma opção:")
             print("1 - Alterar nome de usuário")

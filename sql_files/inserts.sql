@@ -100,7 +100,7 @@ INSERT INTO Album (id_album, tipo, nome, ano, id_artista) VALUES
         (8, 'Disco', 'Teenage Dream', 2010, 8),
         (9, 'Disco', 'Master of Puppets', 1986, 9),
         (10, 'Single', 'Namorar pra Que?', 2016, 10),
-        (11, 'Disco', 'Pixote no Estúdio Showlivre, Vol. 3', 2007, 11),
+        (11, 'Disco', 'Pixote no Estudio Showlivre, Vol. 3', 2007, 11),
         (12, 'Single', 'Ombrim', 2023, 12),
         (13, 'Disco', 'The Marshall Mathers LP 2', 2013, 13),
         (14, 'Disco', 'Vulgar Display of Power', 1992, 14),
@@ -1583,7 +1583,8 @@ INSERT INTO Tema (id_tema, descricao) VALUES
         (3, 'Geek'),
         (4, 'Jornalistico'),
         (5, 'RPG'),
-        (6, 'Entrevista');
+        (6, 'Entrevista'),
+        (7, 'MesaCast');
 
 
 ----
