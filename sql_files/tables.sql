@@ -64,7 +64,7 @@ nome varchar(100),
 duracao time,
 qtd_streamings integer,
 data_lancamento date,
-conteudo varchar(50)
+conteudo varchar(100)
 );
 
 ----
