@@ -329,11 +329,14 @@ def consulta2(connect):
     select u.nome as usuario, 
     count(*) as qtd_musicas_tocadas, sum(mi.duracao) as duracao_total_musicas_tocadas
     from usuario as u
+    join assinatura as a on a.id_usuario = u.id_usuario
+    join plano_assinatura as pa on pa.id_plano = a.id_plano
     join reproducao as r on r.id_usuario = u.id_usuario
     join midia as mi on mi.id_midia = r.id_midia
+    where pa.nome = 'Standard'
     group by u.nome
     """
-    print("\nSegunda Consulta: Selecione a quantidade total de músicas tocadas e a duração total considerando a duração individual de cada música por usuario.")
+    print("\nSegunda Consulta: Selecione a quantidade total de músicas tocadas e a duração total considerando a duração individual de cada música por usuario com o plano de assinatura 'Standard'.")
     cursor = connect.cursor()
     cursor.execute(select_query)
     myresult = cursor.fetchall()
@@ -363,7 +366,7 @@ def consulta2(connect):
     ax2.tick_params(axis='y', labelcolor='orange')
 
     # Title and labels
-    plt.title('Quantidade e Duração Total de Músicas Tocadas por Usuário')
+    plt.title('Quantidade e Duração Total de Músicas Tocadas por Usuário do plano Standard')
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
