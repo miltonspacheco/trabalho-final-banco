@@ -7,7 +7,10 @@ UPDATE Usuario SET email = 'miltonsilveirapacheco@gmail.com' WHERE nome = 'Milto
 UPDATE Playlist SET descricao = 'Musicas de rock antigas' WHERE nome = 'Rock Antigo';
 ----
 
-UPDATE Midia SET qtd_streamings = 0;
+UPDATE Midia SET nome = CONCAT(nome, '(Explicit)') WHERE id_midia IN (
+    SELECT id_midia
+    FROM Musica
+    WHERE letra LIKE '%fuck%');
 ----
 
 UPDATE Artista SET tipo = 'Dupla' WHERE nome = 'Chicaozinho e Xororo';
@@ -19,7 +22,7 @@ UPDATE Assinatura SET data_vencimento = '2025-07-01' WHERE id_plano = 3;
 UPDATE Album SET tipo = 'Ao Vivo' WHERE id_album = 11;
 ----
 
-UPDATE Reproducao SET data_reproducao = null WHERE data_reproducao < '2023-12-02 00:00:00';
+UPDATE Reproducao SET data_reproducao = null WHERE data_reproducao > '2023-12-02 00:00:00';
 ----
 
 -- Muda Paradise City para Clássicos Inesquecíveis
