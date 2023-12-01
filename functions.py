@@ -293,7 +293,7 @@ def consulta1(connect):
     select g.nome, avg(mi.duracao) as media
     from musica as mu
     join midia as mi on mi.id_midia = mu.id_midia
-    join genero_Musica as gm on mi.id_midia = gm.id_midia
+    join genero_musica as gm on mi.id_midia = gm.id_midia
     join genero as g on gm.id_genero = g.id_genero
     group by g.nome
     """
