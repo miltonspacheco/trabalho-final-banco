@@ -473,6 +473,9 @@ def user_welcome(connect):
     show_message()
 
     option = int(input("Opção: "))
+    if option < 1 or option > 2:
+        print("Erro tente novamente")
+        option = int(input())
 
     if option == 2:
         email = input("Digite seu email: ")
@@ -532,7 +535,11 @@ def user_options(connect, email, senha):
         print("1 - Reproduzir mídia")
         print("2 - Editar perfil")
         print("3 - Sair")
+
         choice = int(input("Opção: "))
+        if choice < 1 or choice > 3:
+            print("Erro tente novamente")
+            choice = int(input())
         
         if choice == 1:
             media = play_media(connect) 
@@ -544,18 +551,22 @@ def user_options(connect, email, senha):
             print("1 - Alterar nome de usuário")
             print("2 - Alterar email")
             print("3 - Alterar senha")
-            alt = int(input("Opção: "))
+
+            option = int(input("Opção: "))
+            if option < 1 or option > 2:
+                print("Erro tente novamente")
+                option = int(input())
 
             cursor = connect.cursor()
             query = 'select u.nome from usuario as u where u.email = %s'
             cursor.execute(query, (email, ))
             nome = cursor.fetchone()[0]
 
-            if alt == 1:
+            if option == 1:
                 novo_nome = input("Digite o novo nome de usuário: ")
                 novo_email = email
                 nova_senha = senha
-            elif alt == 2:
+            elif option == 2:
                 novo_email = input("Digite o novo email: ")
                 novo_nome = nome
                 nova_senha = senha

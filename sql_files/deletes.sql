@@ -40,9 +40,10 @@ DELETE FROM Genero_Musica WHERE id_genero IN (
     WHERE nome = 'Sertanejo');
 --
 DELETE FROM Genero_Musica WHERE id_midia IN (
-    SELECT id_midia
-    FROM Album
-    WHERE ano = 1987
+    SELECT mu.id_midia
+    FROM Musica AS mu
+    JOIN Album AS al ON mu.id_album = al.id_album
+    WHERE al.ano = 1987
 );
 ----
 
@@ -174,14 +175,3 @@ DELETE FROM Usuario WHERE id_usuario IN (
 
 DELETE FROM Plano_Assinatura
 WHERE valor>7;
-
-
-
-
-
-
-
-
-
-
-
