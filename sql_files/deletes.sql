@@ -45,6 +45,15 @@ DELETE FROM Genero_Musica WHERE id_midia IN (
     JOIN Album AS al ON mu.id_album = al.id_album
     WHERE al.ano = 1987
 );
+--
+DELETE FROM Genero_Musica 
+WHERE id_midia IN (
+    SELECT Musica.id_midia
+    FROM Musica
+    INNER JOIN Album ON Musica.id_album = Album.id_album
+    INNER JOIN Artista ON Album.id_artista = Artista.id_artista
+    WHERE Artista.nome = 'Coldplay'
+);
 ----
 
 -- Deleta o gênero sertanejo
